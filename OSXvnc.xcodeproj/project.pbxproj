@@ -138,16 +138,27 @@
 
 /* Begin PBXFileReference section */
 		096B69DC0097995A7F000001 /* OSXvnc.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; path = OSXvnc.html; sourceTree = "<group>"; };
-		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5523FDBB2CA21458004D4647 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = fr; path = fr.lproj/Credits.rtf; sourceTree = "<group>"; };
+		5523FDBC2CA2145B004D4647 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
+		5523FDBD2CA2145D004D4647 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = it; path = it.lproj/Credits.rtf; sourceTree = "<group>"; };
+		5523FDBE2CA214B5004D4647 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Credits.rtf; sourceTree = "<group>"; };
+		5523FDBF2CA214BB004D4647 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = it; path = it.lproj/Copying.rtf; sourceTree = "<group>"; };
+		5523FDC32CA215D6004D4647 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		5523FDC52CA215E3004D4647 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		5523FDC72CA215EF004D4647 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		5523FDC92CA215F2004D4647 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		5523FDCB2CA215F5004D4647 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		5523FDCC2CA215FA004D4647 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		919999420B11348C0099EA7A /* getMACAddress.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = getMACAddress.h; sourceTree = "<group>"; };
 		919999430B11348E0099EA7A /* getMACAddress.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 30; path = getMACAddress.c; sourceTree = "<group>"; };
 		AB25D83708686B520065843D /* VineServer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "VineServer-Info.plist"; sourceTree = "<group>"; };
 		AB25D83808686B520065843D /* Vine Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vine Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB25DA3A0868842E0065843D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
-		AB25DA3C086884420065843D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
+		AB25DA3A0868842E0065843D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		AB25DA3C086884420065843D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		AB3E27F70AF947FB004AF567 /* Vine Server.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Vine Server.pdf"; sourceTree = "<group>"; };
-		AB41881F04C5986E00A80117 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
+		AB41881F04C5986E00A80117 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		AB82605708689AC00010AB63 /* storepasswd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = storepasswd; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB82605B08689AC00010AB63 /* OSXvnc-server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OSXvnc-server"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB82E81904FA629800A80117 /* kbdptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kbdptr.h; sourceTree = "<group>"; };
@@ -155,7 +166,7 @@
 		AB83C53A12724F8B0096F6A7 /* Version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version.txt; sourceTree = "<group>"; };
 		AB95E3650FD497F600D063EC /* screencapture.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = screencapture.c; sourceTree = "<group>"; };
 		AB95E3B20FD4A68800D063EC /* screencapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = screencapture.h; sourceTree = "<group>"; };
-		AB95E3ED0FD4AA3700D063EC /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		AB95E3ED0FD4AA3700D063EC /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		ABA7B3D10948CB5D00CD7499 /* d3des.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = d3des.c; sourceTree = "<group>"; };
 		ABA7B3D20948CB5D00CD7499 /* d3des.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = d3des.h; sourceTree = "<group>"; };
 		ABA7B3D30948CB5D00CD7499 /* vncauth.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = vncauth.c; sourceTree = "<group>"; };
@@ -165,8 +176,8 @@
 		ABCCC8B203D9C60A00A80117 /* OSXvnc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; path = OSXvnc; sourceTree = "<group>"; };
 		ABD8EC07058A0BD600C84739 /* NSAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAuthorization.h; sourceTree = "<group>"; };
 		ABD8EC08058A0BD600C84739 /* NSAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAuthorization.m; sourceTree = "<group>"; };
-		ABEE28F804C8745B00A80117 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
-		ABF191B704E447A400A80117 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		ABEE28F804C8745B00A80117 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		ABF191B704E447A400A80117 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		ABFC222B0AF08CBA00BCE727 /* VineServer.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = VineServer.icns; sourceTree = "<group>"; };
 		F538E01002F9812901A80186 /* auth.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 30; path = auth.c; sourceTree = "<group>"; };
 		F538E01302F9812901A80186 /* corre.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = corre.c; sourceTree = "<group>"; };
@@ -258,7 +269,6 @@
 		F89837AE25B78D05003BFE25 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Copying.rtf; sourceTree = "<group>"; };
 		F89837AF25B78D05003BFE25 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F89837B025B78D09003BFE25 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F89837B125B78D15003BFE25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -774,6 +784,7 @@
 				F89837A825B78CFB003BFE25 /* en */,
 				F89837AC25B78D00003BFE25 /* de */,
 				F89837AE25B78D05003BFE25 /* ja */,
+				5523FDBF2CA214BB004D4647 /* it */,
 			);
 			name = Copying.rtf;
 			sourceTree = "<group>";
@@ -793,7 +804,12 @@
 		ABDBE34515BA2A9D00558229 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F89837B125B78D15003BFE25 /* Base */,
+				5523FDC32CA215D6004D4647 /* Base */,
+				5523FDC52CA215E3004D4647 /* fr */,
+				5523FDC72CA215EF004D4647 /* de */,
+				5523FDC92CA215F2004D4647 /* it */,
+				5523FDCB2CA215F5004D4647 /* ja */,
+				5523FDCC2CA215FA004D4647 /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -802,6 +818,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				F89837A925B78CFB003BFE25 /* en */,
+				5523FDBB2CA21458004D4647 /* fr */,
+				5523FDBC2CA2145B004D4647 /* de */,
+				5523FDBD2CA2145D004D4647 /* it */,
+				5523FDBE2CA214B5004D4647 /* ja */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";

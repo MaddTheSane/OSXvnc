@@ -1,0 +1,381 @@
+
+/* Class = "NSWindow"; title = "OSXvnc"; ObjectID = "21"; */
+"21.title" = "OSXvnc";
+
+/* Class = "NSMenu"; title = "MainMenu"; ObjectID = "29"; */
+"29.title" = "MainMenu";
+
+/* Class = "NSMenuItem"; title = "OSXvnc"; ObjectID = "56"; */
+"56.title" = "OSXvnc";
+
+/* Class = "NSMenu"; title = "Info"; ObjectID = "57"; */
+"57.title" = "Info";
+
+/* Class = "NSMenuItem"; title = "About OSXvnc"; ObjectID = "58"; */
+"58.title" = "About OSXvnc";
+
+/* Class = "NSMenu"; title = "File"; ObjectID = "81"; */
+"81.title" = "File";
+
+/* Class = "NSMenuItem"; title = "File"; ObjectID = "83"; */
+"83.title" = "File";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "103"; */
+"103.title" = "Help";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "106"; */
+"106.title" = "Help";
+
+/* Class = "NSMenuItem"; title = "OSXvnc Help"; ObjectID = "111"; */
+"111.title" = "OSXvnc Help";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "130"; */
+"130.title" = "Services";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "131"; */
+"131.title" = "Services";
+
+/* Class = "NSMenuItem"; title = "Hide OSXvnc"; ObjectID = "134"; */
+"134.title" = "Hide OSXvnc";
+
+/* Class = "NSMenuItem"; title = "Quit OSXvnc"; ObjectID = "136"; */
+"136.title" = "Quit OSXvnc";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
+"145.title" = "Hide Others";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
+"150.title" = "Show All";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "157"; */
+"157.title" = "Copy";
+
+/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "160"; */
+"160.title" = "Cut";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "163"; */
+"163.title" = "Edit";
+
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "169"; */
+"169.title" = "Edit";
+
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
+"171.title" = "Paste";
+
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
+"172.title" = "Select All";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Display Number for VNC Server\nNote: This number+5900 is the port that will be used"; ObjectID = "195"; */
+"195.ibShadowedToolTip" = "Display Number for VNC Server\nNote: This number+5900 is the port that will be used";
+
+/* Class = "NSMenuItem"; title = "3"; ObjectID = "196"; */
+"196.title" = "3";
+
+/* Class = "NSMenuItem"; title = "1"; ObjectID = "197"; */
+"197.title" = "1";
+
+/* Class = "NSMenuItem"; title = "2"; ObjectID = "198"; */
+"198.title" = "2";
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "Display Number for VNC Server\nNote: This number+5900 is the port that will be used"; ObjectID = "199"; */
+"199.ibShadowedToolTip" = "Display Number for VNC Server\nNote: This number+5900 is the port that will be used";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "200"; */
+"200.title" = "OtherViews";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Port Number that VNC is communicating on \nNote: Same as Display Number+5900"; ObjectID = "201"; */
+"201.ibShadowedToolTip" = "Port Number that VNC is communicating on \nNote: Same as Display Number+5900";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Port Number that VNC is communicating on \nNote: Same as Display Number+5900"; ObjectID = "202"; */
+"202.ibShadowedToolTip" = "Port Number that VNC is communicating on \nNote: Same as Display Number+5900";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Display Name that the VNC Client will use for this computer"; ObjectID = "203"; */
+"203.ibShadowedToolTip" = "Display Name that the VNC Client will use for this computer";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Display Name that the VNC Client will use for this computer"; ObjectID = "204"; */
+"204.ibShadowedToolTip" = "Display Name that the VNC Client will use for this computer";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Password required to connect with VNC Client.\nNote: Size is not preserved"; ObjectID = "226"; */
+"226.ibShadowedToolTip" = "Password required to connect with VNC Client.\nNote: Size is not preserved";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Password required to connect with VNC Client.\nNote: Size is not preserved"; ObjectID = "227"; */
+"227.ibShadowedToolTip" = "Password required to connect with VNC Client.\nNote: Size is not preserved";
+
+/* Class = "NSMenuItem"; title = "4"; ObjectID = "245"; */
+"245.title" = "4";
+
+/* Class = "NSMenuItem"; title = "5"; ObjectID = "246"; */
+"246.title" = "5";
+
+/* Class = "NSMenuItem"; title = "6"; ObjectID = "247"; */
+"247.title" = "6";
+
+/* Class = "NSMenuItem"; title = "7"; ObjectID = "248"; */
+"248.title" = "7";
+
+/* Class = "NSMenuItem"; title = "8"; ObjectID = "249"; */
+"249.title" = "8";
+
+/* Class = "NSMenuItem"; title = "9"; ObjectID = "250"; */
+"250.title" = "9";
+
+/* Class = "NSMenuItem"; title = "--"; ObjectID = "275"; */
+"275.title" = "--";
+
+/* Class = "NSMenuItem"; title = "Start server"; ObjectID = "282"; */
+"282.title" = "Start server";
+
+/* Class = "NSMenuItem"; title = "Stop server"; ObjectID = "283"; */
+"283.title" = "Stop server";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "285"; */
+"285.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "288"; */
+"288.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "289"; */
+"289.title" = "Minimize";
+
+/* Class = "NSMenuItem"; title = "0"; ObjectID = "303"; */
+"303.title" = "0";
+
+/* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "379"; */
+"379.title" = "Release Notes";
+
+/* Class = "NSMenuItem"; title = "GPL License"; ObjectID = "382"; */
+"382.title" = "GPL License";
+
+/* Class = "NSMenuItem"; title = "Show VNCServer Log"; ObjectID = "388"; */
+"388.title" = "Show VNCServer Log";
+
+/* Class = "NSMenuItem"; title = "Close Window"; ObjectID = "389"; */
+"389.title" = "Close Window";
+
+/* Class = "NSMenu"; title = "Menu"; ObjectID = "404"; */
+"404.title" = "Menu";
+
+/* Class = "NSMenuItem"; title = "Start Server"; ObjectID = "405"; */
+"405.title" = "Start Server";
+
+/* Class = "NSMenuItem"; title = "Stop Server"; ObjectID = "408"; */
+"408.title" = "Stop Server";
+
+/* Class = "NSMenuItem"; title = "Show Log"; ObjectID = "410"; */
+"410.title" = "Show Log";
+
+/* Class = "NSMenuItem"; title = "Install VNC As Startup Item"; ObjectID = "417"; */
+"417.title" = "Install VNC As Startup Item";
+
+/* Class = "NSTabViewItem"; label = "General"; ObjectID = "432"; */
+"432.label" = "General";
+
+/* Class = "NSTabViewItem"; label = "Sharing"; ObjectID = "433"; */
+"433.label" = "Sharing";
+
+/* Class = "NSBox"; ibShadowedToolTip = "This section controls how multiple VNC clients share the screen"; ObjectID = "436"; */
+"436.ibShadowedToolTip" = "This section controls how multiple VNC clients share the screen";
+
+/* Class = "NSBox"; title = "Display Sharing"; ObjectID = "436"; */
+"436.title" = "Display Sharing";
+
+/* Class = "NSButtonCell"; ibShadowedToolTip = "Never allow multiple VNC clients"; ObjectID = "439"; */
+"439.ibShadowedToolTip" = "Never allow multiple VNC clients";
+
+/* Class = "NSButtonCell"; title = "Never share display between clients"; ObjectID = "439"; */
+"439.title" = "Never share display between clients";
+
+/* Class = "NSButtonCell"; ibShadowedToolTip = "Allow client to specify if it will work while other VNC clients are connected."; ObjectID = "441"; */
+"441.ibShadowedToolTip" = "Allow client to specify if it will work while other VNC clients are connected.";
+
+/* Class = "NSButtonCell"; title = "Let clients decide"; ObjectID = "441"; */
+"441.title" = "Let clients decide";
+
+/* Class = "NSButtonCell"; ibShadowedToolTip = "Always allow multiple VNC clients"; ObjectID = "443"; */
+"443.ibShadowedToolTip" = "Always allow multiple VNC clients";
+
+/* Class = "NSButtonCell"; title = "Always share display between clients"; ObjectID = "443"; */
+"443.title" = "Always share display between clients";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Checking this box means the new client is denied access.  Unchecking it means the existing client is disconnected."; ObjectID = "444"; */
+"444.ibShadowedToolTip" = "Checking this box means the new client is denied access.  Unchecking it means the existing client is disconnected.";
+
+/* Class = "NSTabViewItem"; label = "Startup"; ObjectID = "447"; */
+"447.label" = "Startup";
+
+/* Class = "NSTabViewItem"; label = "System"; ObjectID = "485"; */
+"485.label" = "System";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Sleeping machines can not be reached by VNC, enable this if you want to allow the machine to sleep anyhow."; ObjectID = "487"; */
+"487.ibShadowedToolTip" = "Sleeping machines can not be reached by VNC, enable this if you want to allow the machine to sleep anyhow.";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Enable this to prevent the screen from dimming while clients are connected."; ObjectID = "490"; */
+"490.ibShadowedToolTip" = "Enable this to prevent the screen from dimming while clients are connected.";
+
+/* Class = "NSBox"; title = "Mouse"; ObjectID = "494"; */
+"494.title" = "Mouse";
+
+/* Class = "NSBox"; title = "Video"; ObjectID = "498"; */
+"498.title" = "Video";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Host Name that can be used to refer to this machine"; ObjectID = "523"; */
+"523.ibShadowedToolTip" = "Host Name that can be used to refer to this machine";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "IP Address that can be used to refer to this machine"; ObjectID = "524"; */
+"524.ibShadowedToolTip" = "IP Address that can be used to refer to this machine";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Host Name that can be used to refer to this machine"; ObjectID = "525"; */
+"525.ibShadowedToolTip" = "Host Name that can be used to refer to this machine";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "IP Address that can be used to refer to this machine"; ObjectID = "527"; */
+"527.ibShadowedToolTip" = "IP Address that can be used to refer to this machine";
+
+/* Class = "NSMenuItem"; title = "Auto"; ObjectID = "568"; */
+"568.title" = "Auto";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "IP/Machine Name of listening VNC viewer"; ObjectID = "570"; */
+"570.ibShadowedToolTip" = "IP/Machine Name of listening VNC viewer";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Port Number that VNC is communicating on \nNote: Same as Display Number+5900"; ObjectID = "571"; */
+"571.ibShadowedToolTip" = "Port Number that VNC is communicating on \nNote: Same as Display Number+5900";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Port Number to connect listening VNC viewer"; ObjectID = "574"; */
+"574.ibShadowedToolTip" = "Port Number to connect listening VNC viewer";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Port Number that VNC is communicating on \nNote: Same as Display Number+5900"; ObjectID = "575"; */
+"575.ibShadowedToolTip" = "Port Number that VNC is communicating on \nNote: Same as Display Number+5900";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Send additional command line arguments to the OSXvnc server."; ObjectID = "587"; */
+"587.ibShadowedToolTip" = "Send additional command line arguments to the OSXvnc server.";
+
+/* Class = "NSBox"; title = "Other Arguments"; ObjectID = "588"; */
+"588.title" = "Other Arguments";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "592"; */
+"592.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "593"; */
+"593.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "594"; */
+"594.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "595"; */
+"595.title" = "Item1";
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "Force OSXvnc to use an older protocol."; ObjectID = "596"; */
+"596.ibShadowedToolTip" = "Force OSXvnc to use an older protocol.";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "597"; */
+"597.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "3.3"; ObjectID = "598"; */
+"598.title" = "3.3";
+
+/* Class = "NSMenuItem"; title = "3.7"; ObjectID = "599"; */
+"599.title" = "3.7";
+
+/* Class = "NSMenuItem"; title = "Default"; ObjectID = "600"; */
+"600.title" = "Default";
+
+/* Class = "NSBox"; title = "Protocol"; ObjectID = "601"; */
+"601.title" = "Protocol";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Enable this to allow the screen saver to turn on when clients are connected."; ObjectID = "606"; */
+"606.ibShadowedToolTip" = "Enable this to allow the screen saver to turn on when clients are connected.";
+
+/* Class = "NSButtonCell"; title = "Start Server"; ObjectID = "616"; */
+"616.title" = "Start Server";
+
+/* Class = "NSButtonCell"; title = "Stop Server"; ObjectID = "617"; */
+"617.title" = "Stop Server";
+
+/* Class = "NSTextFieldCell"; title = "The server is not running."; ObjectID = "618"; */
+"618.title" = "The server is not running.";
+
+/* Class = "NSButtonCell"; title = "View Log"; ObjectID = "619"; */
+"619.title" = "View Log";
+
+/* Class = "NSTextFieldCell"; title = "Display Number:"; ObjectID = "620"; */
+"620.title" = "Display Number:";
+
+/* Class = "NSTextFieldCell"; title = "Port:"; ObjectID = "623"; */
+"623.title" = "Port:";
+
+/* Class = "NSTextFieldCell"; title = "Display Name:"; ObjectID = "624"; */
+"624.title" = "Display Name:";
+
+/* Class = "NSTextFieldCell"; title = "Mac OS X"; ObjectID = "625"; */
+"625.title" = "Mac OS X";
+
+/* Class = "NSTextFieldCell"; title = "Password:\n"; ObjectID = "626"; */
+"626.title" = "Password:\n";
+
+/* Class = "NSTextFieldCell"; title = "12345678"; ObjectID = "627"; */
+"627.title" = "12345678";
+
+/* Class = "NSTextFieldCell"; title = "Host Name:"; ObjectID = "628"; */
+"628.title" = "Host Name:";
+
+/* Class = "NSTextFieldCell"; title = "IP Address:"; ObjectID = "629"; */
+"629.title" = "IP Address:";
+
+/* Class = "NSTextFieldCell"; title = "Host Name\nHost Name"; ObjectID = "630"; */
+"630.title" = "Host Name\nHost Name";
+
+/* Class = "NSTextFieldCell"; title = "IP\nIP\nIP"; ObjectID = "631"; */
+"631.title" = "IP\nIP\nIP";
+
+/* Class = "NSTextFieldCell"; title = "Connect Host:"; ObjectID = "633"; */
+"633.title" = "Connect Host:";
+
+/* Class = "NSTextFieldCell"; title = "Port:"; ObjectID = "635"; */
+"635.title" = "Port:";
+
+/* Class = "NSButtonCell"; title = "Add"; ObjectID = "636"; */
+"636.title" = "Add";
+
+/* Class = "NSButtonCell"; title = "Disable Remote Keyboard/Pointer"; ObjectID = "637"; */
+"637.title" = "Disable Remote Keyboard/Pointer";
+
+/* Class = "NSButtonCell"; title = "Only allow local connections (require SSH)"; ObjectID = "638"; */
+"638.title" = "Only allow local connections (require SSH)";
+
+/* Class = "NSButtonCell"; title = "Advertise Server via Bonjour (10.2+)"; ObjectID = "639"; */
+"639.title" = "Advertise Server via Bonjour (10.2+)";
+
+/* Class = "NSButtonCell"; title = "Start Server When Application Launches"; ObjectID = "640"; */
+"640.title" = "Start Server When Application Launches";
+
+/* Class = "NSButtonCell"; title = "Restart Server if it terminates unexpectedly"; ObjectID = "641"; */
+"641.title" = "Restart Server if it terminates unexpectedly";
+
+/* Class = "NSButtonCell"; title = "Configure Startup Item"; ObjectID = "642"; */
+"642.title" = "Configure Startup Item";
+
+/* Class = "NSTextFieldCell"; title = "(Requires Authentication)\nConfigures the OSXvnc server to startup silently at boot time using this application's currently selected settings.  To make changes please use the \"Configure Startup Item\" again.\nNOTE: Pasteboard services are unavailable in this mode\n\n"; ObjectID = "643"; */
+"643.title" = "(Requires Authentication)\nConfigures the OSXvnc server to startup silently at boot time using this application's currently selected settings.  To make changes please use the \"Configure Startup Item\" again.\nNOTE: Pasteboard services are unavailable in this mode\n\n";
+
+/* Class = "NSButtonCell"; title = "Terminate Server On A Fast User Switch (10.3+)"; ObjectID = "645"; */
+"645.title" = "Terminate Server On A Fast User Switch (10.3+)";
+
+/* Class = "NSButtonCell"; title = "Disable Startup Item"; ObjectID = "646"; */
+"646.title" = "Disable Startup Item";
+
+/* Class = "NSButtonCell"; title = "Keep existing client when new client connects"; ObjectID = "647"; */
+"647.title" = "Keep existing client when new client connects";
+
+/* Class = "NSButtonCell"; title = "Swap Mouse Buttons 2 and 3"; ObjectID = "648"; */
+"648.title" = "Swap Mouse Buttons 2 and 3";
+
+/* Class = "NSButtonCell"; title = "Allow Machine to Sleep"; ObjectID = "649"; */
+"649.title" = "Allow Machine to Sleep";
+
+/* Class = "NSButtonCell"; title = "Allow Display Dimming (input undims)"; ObjectID = "650"; */
+"650.title" = "Allow Display Dimming (input undims)";
+
+/* Class = "NSButtonCell"; title = "Allow Screen Saver"; ObjectID = "651"; */
+"651.title" = "Allow Screen Saver";
+
+/* Class = "NSButtonCell"; title = "Radio"; ObjectID = "655"; */
+"655.title" = "Radio";
