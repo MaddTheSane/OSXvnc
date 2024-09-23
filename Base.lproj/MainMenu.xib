@@ -1081,16 +1081,14 @@ DQ
                 <rect key="frame" x="0.0" y="0.0" width="423" height="143"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <box fixedFrame="YES" title="Reverse Connection" translatesAutoresizingMaskIntoConstraints="NO" id="1713">
-                        <rect key="frame" x="14" y="49" width="398" height="85"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <box title="Reverse Connection" translatesAutoresizingMaskIntoConstraints="NO" id="1713">
+                        <rect key="frame" x="14" y="50" width="398" height="88"/>
                         <view key="contentView" id="lGB-UO-jpX">
-                            <rect key="frame" x="4" y="5" width="390" height="65"/>
+                            <rect key="frame" x="4" y="5" width="390" height="68"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textField toolTip="IP/Machine Name of listening VNC viewer" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1714">
-                                    <rect key="frame" x="189" y="35" width="185" height="22"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <textField toolTip="IP/Machine Name of listening VNC viewer" focusRingType="none" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="1714">
+                                    <rect key="frame" x="175" y="39" width="195" height="21"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="1715">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1100,18 +1098,19 @@ DQ
                                         <action selector="performClick:" target="1711" id="1886"/>
                                     </connections>
                                 </textField>
-                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="166" translatesAutoresizingMaskIntoConstraints="NO" id="1716">
-                                    <rect key="frame" x="14" y="33" width="170" height="18"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="166" translatesAutoresizingMaskIntoConstraints="NO" id="1716">
+                                    <rect key="frame" x="18" y="42" width="152" height="16"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Viewer Host Name or IP:" id="1717">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField toolTip="Port Number to connect listening VNC viewer" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1718">
-                                    <rect key="frame" x="189" y="8" width="70" height="22"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <textField toolTip="Port Number to connect listening VNC viewer" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1718">
+                                    <rect key="frame" x="175" y="8" width="70" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="70" id="gad-og-gtQ"/>
+                                    </constraints>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="1719">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1121,9 +1120,8 @@ DQ
                                         <action selector="performClick:" target="1711" id="1887"/>
                                     </connections>
                                 </textField>
-                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="46" translatesAutoresizingMaskIntoConstraints="NO" id="2002">
-                                    <rect key="frame" x="134" y="6" width="50" height="19"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="46" translatesAutoresizingMaskIntoConstraints="NO" id="2002">
+                                    <rect key="frame" x="136" y="11" width="34" height="16"/>
                                     <string key="toolTip">Display Number for VNC Server
 Note: This number+5900 is the port that will be used</string>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Port:" id="2003">
@@ -1133,12 +1131,24 @@ Note: This number+5900 is the port that will be used</string>
                                     </textFieldCell>
                                 </textField>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="1718" firstAttribute="firstBaseline" secondItem="2002" secondAttribute="firstBaseline" id="1Mj-wn-iV3"/>
+                                <constraint firstItem="1714" firstAttribute="leading" secondItem="1718" secondAttribute="leading" id="9VD-Pb-GHR"/>
+                                <constraint firstAttribute="bottom" secondItem="1718" secondAttribute="bottom" constant="8" id="JmU-WH-Ed1"/>
+                                <constraint firstItem="1716" firstAttribute="trailing" secondItem="2002" secondAttribute="trailing" id="Zkd-11-HRS"/>
+                                <constraint firstItem="1714" firstAttribute="top" secondItem="lGB-UO-jpX" secondAttribute="top" constant="8" id="ac2-gE-QEE"/>
+                                <constraint firstItem="1714" firstAttribute="leading" secondItem="1716" secondAttribute="trailing" constant="7" id="c4M-qr-GCD"/>
+                                <constraint firstAttribute="trailing" secondItem="1714" secondAttribute="trailing" constant="20" symbolic="YES" id="fYw-tN-Q7t"/>
+                                <constraint firstItem="1716" firstAttribute="leading" secondItem="lGB-UO-jpX" secondAttribute="leading" constant="20" symbolic="YES" id="tWD-b1-Dxp"/>
+                                <constraint firstItem="1714" firstAttribute="firstBaseline" secondItem="1716" secondAttribute="firstBaseline" id="x2r-ap-7Bb"/>
+                                <constraint firstItem="2002" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lGB-UO-jpX" secondAttribute="leading" constant="20" symbolic="YES" id="yRd-E7-NJB"/>
+                                <constraint firstItem="1718" firstAttribute="top" secondItem="1714" secondAttribute="bottom" constant="10" symbolic="YES" id="zHQ-wJ-Nwa"/>
+                            </constraints>
                         </view>
                         <font key="titleFont" metaFont="smallSystemBold"/>
                     </box>
-                    <button toolTip="Add a listening VNC viewer." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1711">
-                        <rect key="frame" x="314" y="12" width="101" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                    <button toolTip="Add a listening VNC viewer." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1711">
+                        <rect key="frame" x="324" y="13" width="86" height="32"/>
                         <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1712">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1150,9 +1160,8 @@ DQ
                             <action selector="connectHost:" target="1668" id="1888"/>
                         </connections>
                     </button>
-                    <button toolTip="Add a listening VNC viewer." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1722">
-                        <rect key="frame" x="213" y="12" width="101" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                    <button toolTip="Add a listening VNC viewer." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1722">
+                        <rect key="frame" x="240" y="13" width="86" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1723">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1164,9 +1173,8 @@ Gw
                             <action selector="cancelConnectHost:" target="1668" id="1898"/>
                         </connections>
                     </button>
-                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="193" translatesAutoresizingMaskIntoConstraints="NO" id="1724">
-                        <rect key="frame" x="14" y="16" width="197" height="29"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="193" translatesAutoresizingMaskIntoConstraints="NO" id="1724">
+                        <rect key="frame" x="14" y="16" width="159" height="30"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Reverse Connection Message" id="1725">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1174,6 +1182,21 @@ Gw
                         </textFieldCell>
                     </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="1713" secondAttribute="trailing" constant="14" id="5gh-4D-3WZ"/>
+                    <constraint firstItem="1722" firstAttribute="baseline" secondItem="1711" secondAttribute="baseline" id="9Pb-gz-lKu"/>
+                    <constraint firstItem="1722" firstAttribute="top" secondItem="1713" secondAttribute="bottom" constant="14" id="DFP-1x-xia"/>
+                    <constraint firstAttribute="bottom" secondItem="1722" secondAttribute="bottom" constant="20" symbolic="YES" id="Ge7-IM-fIN"/>
+                    <constraint firstItem="1724" firstAttribute="leading" secondItem="1710" secondAttribute="leading" constant="16" id="OOH-TK-GJh"/>
+                    <constraint firstItem="1711" firstAttribute="width" secondItem="1722" secondAttribute="width" id="RAB-m7-gvr"/>
+                    <constraint firstItem="1713" firstAttribute="leading" secondItem="1710" secondAttribute="leading" constant="17" id="WfT-op-3Qb"/>
+                    <constraint firstItem="1711" firstAttribute="baseline" secondItem="1722" secondAttribute="firstBaseline" id="ePy-sQ-1EF"/>
+                    <constraint firstItem="1724" firstAttribute="top" secondItem="1713" secondAttribute="bottom" constant="8" symbolic="YES" id="hxe-5a-BHt"/>
+                    <constraint firstItem="1711" firstAttribute="leading" secondItem="1722" secondAttribute="trailing" constant="12" symbolic="YES" id="llS-SG-OuD"/>
+                    <constraint firstItem="1722" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1724" secondAttribute="trailing" constant="8" symbolic="YES" id="lvY-gj-yZm"/>
+                    <constraint firstAttribute="bottom" secondItem="1724" secondAttribute="bottom" constant="16" id="rhv-Uk-6iA"/>
+                    <constraint firstAttribute="trailing" secondItem="1711" secondAttribute="trailing" constant="20" symbolic="YES" id="v6b-2c-jbD"/>
+                </constraints>
             </view>
             <point key="canvasLocation" x="-591" y="553"/>
         </window>
@@ -1401,12 +1424,11 @@ Note: This number+5900 is the port that will be used</string>
             <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="1772">
-                <rect key="frame" x="0.0" y="0.0" width="382" height="164"/>
+                <rect key="frame" x="0.0" y="0.0" width="382" height="155"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1773">
-                        <rect key="frame" x="218" y="81" width="88" height="22"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1773">
+                        <rect key="frame" x="218" y="81" width="88" height="21"/>
                         <string key="toolTip">Password required to connect with VNC Client.
 Note: Password length is not preserved</string>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="1774">
@@ -1419,9 +1441,8 @@ Note: Password length is not preserved</string>
                             <outlet property="delegate" destination="1668" id="1849"/>
                         </connections>
                     </textField>
-                    <matrix verticalHuggingPriority="750" fixedFrame="YES" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1775">
-                        <rect key="frame" x="84" y="62" width="134" height="38"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1775">
+                        <rect key="frame" x="84" y="61" width="134" height="38"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         <size key="cellSize" width="134" height="18"/>
                         <size key="intercellSpacing" width="4" height="2"/>
@@ -1445,18 +1466,16 @@ Note: Password length is not preserved</string>
                             <action selector="validateInitialAuthentication:" target="1668" id="1912"/>
                         </connections>
                     </matrix>
-                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="353" translatesAutoresizingMaskIntoConstraints="NO" id="1779">
-                        <rect key="frame" x="17" y="111" width="357" height="40"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="353" translatesAutoresizingMaskIntoConstraints="NO" id="1779">
+                        <rect key="frame" x="17" y="110" width="348" height="32"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Before accepting connections from VNC clients you must select an authentication type:" id="1780">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1781">
-                        <rect key="frame" x="286" y="12" width="82" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1781">
+                        <rect key="frame" x="302" y="12" width="66" height="32"/>
                         <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1782">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1469,6 +1488,20 @@ DQ
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="1781" secondAttribute="trailing" constant="21" id="2Uw-pF-oR6"/>
+                    <constraint firstItem="1781" firstAttribute="top" secondItem="1773" secondAttribute="bottom" constant="42" id="3Vp-eS-UQp"/>
+                    <constraint firstAttribute="bottom" secondItem="1781" secondAttribute="bottom" constant="19" id="4Ij-p3-0nh"/>
+                    <constraint firstItem="1779" firstAttribute="centerX" secondItem="1772" secondAttribute="centerX" id="9wY-MR-0tN"/>
+                    <constraint firstItem="1775" firstAttribute="top" secondItem="1779" secondAttribute="bottom" constant="11" id="Gi6-dP-JO1"/>
+                    <constraint firstItem="1781" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1772" secondAttribute="leading" constant="20" symbolic="YES" id="Inz-Bx-B9z"/>
+                    <constraint firstItem="1773" firstAttribute="leading" secondItem="1775" secondAttribute="trailing" id="K9K-C7-CgH"/>
+                    <constraint firstAttribute="trailing" secondItem="1773" secondAttribute="trailing" constant="76" id="KdQ-h7-dIb"/>
+                    <constraint firstItem="1779" firstAttribute="top" secondItem="1772" secondAttribute="top" constant="13" id="XBh-pp-aj3"/>
+                    <constraint firstItem="1773" firstAttribute="top" secondItem="1779" secondAttribute="bottom" constant="8" symbolic="YES" id="ioC-yE-NKs"/>
+                    <constraint firstItem="1775" firstAttribute="leading" secondItem="1772" secondAttribute="leading" constant="84" id="iug-TM-6Vt"/>
+                    <constraint firstItem="1779" firstAttribute="leading" secondItem="1772" secondAttribute="leading" constant="19" id="uQU-FD-hM3"/>
+                </constraints>
             </view>
             <point key="canvasLocation" x="-862" y="-225"/>
         </window>
