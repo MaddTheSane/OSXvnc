@@ -860,7 +860,7 @@ DQ
             <point key="canvasLocation" x="-998" y="-473"/>
         </menu>
         <window title="Vine Server" deferred="NO" releasedWhenClosed="NO" frameAutosaveName="Server" animationBehavior="default" id="1677">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="191" y="684" width="408" height="337"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
