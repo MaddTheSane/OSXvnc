@@ -149,10 +149,10 @@ static NSMutableArray *localIPAddresses(void) {
     //
     // if (![[NSUserDefaults standardUserDefaults] boolForKey:@"autolaunch"])
     //     SetFrontProcess(& psn );
-    hostName = [hostNameString() retain];
+    hostName = [hostNameString() copy];
 
-    successColor = [[NSColor colorWithDeviceRed:0.0 green:0.4 blue:0.0 alpha:1.0] retain];
-    failureColor = [[NSColor colorWithDeviceRed:0.6 green:0.0 blue:0.0 alpha:1.0] retain];
+    successColor = [NSColor colorWithDeviceRed:0.0 green:0.4 blue:0.0 alpha:1.0];
+    failureColor = [NSColor colorWithDeviceRed:0.6 green:0.0 blue:0.0 alpha:1.0];
 
     [[NSUserDefaults standardUserDefaults] registerDefaults: @{
                                                                @"PasswordFile": @"",
@@ -213,19 +213,19 @@ static NSMutableArray *localIPAddresses(void) {
 }
 
 - (IBAction) terminateRequest: sender {
-    if (clientList.count && !shutdownSignal)
-        NSBeginAlertSheet(NSLocalizedString(@"Quit Vine Server", nil),
-                          NSLocalizedString(@"Cancel", nil),
-                          NSLocalizedString(@"Quit", nil),
-                          nil, statusWindow, self, @selector(terminateSheetDidEnd:returnCode:contextInfo:), NULL, NULL,
-                          NSLocalizedString(@"Disconnect %lu clients and quit Vine Server?", nil), (unsigned long)clientList.count);
-    else
-        [NSApp terminate: self];
-}
-
-- (void) terminateSheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo {
-    if (returnCode == NSAlertAlternateReturn) {
-        [sheet orderOut:self];
+    if (clientList.count && !shutdownSignal) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = NSLocalizedString(@"Quit Vine Server", nil);
+        alert.informativeText = [NSString stringWithFormat:NSLocalizedString(@"Disconnect %lu clients and quit Vine Server?", nil), (unsigned long)clientList.count];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Quit", nil)];
+        
+        [alert beginSheetModalForWindow:statusWindow completionHandler:^(NSModalResponse returnCode) {
+            if (returnCode == NSAlertSecondButtonReturn) {
+                [NSApp terminate: self];
+            }
+        }];
+    } else {
         [NSApp terminate: self];
     }
 }
@@ -244,33 +244,33 @@ static NSMutableArray *localIPAddresses(void) {
 
 // Since this can block for a long time in certain DNS situations we will put this in a separate thread
 - (void) dedicatedUpdateHostInfoThread {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+@autoreleasepool {
     NS_DURING {
         // flushHostCache is no longer needed since OS X 10.6.
 #if 0
         [NSHost flushHostCache];
 #endif
-
+        
         NSHost *currentHost = [NSHost currentHost];
         NSMutableArray *commonHostNames = [currentHost.names mutableCopy];
         NSMutableArray *commonIPAddresses = [currentHost.addresses mutableCopy];
         NSMutableArray *displayIPAddresses = [NSMutableArray array];
-
+        
 #if defined(WITH_EXTERNAL_IP)
         NSURL *externalIP = [NSURL URLWithString:[[NSUserDefaults standardUserDefaults] stringForKey:@"externalIPURL"]];
         NSData *externalIPData = [NSData dataWithContentsOfURL:externalIP];
         NSString *externalIPString = (externalIPData.length ? [NSString stringWithUTF8String: externalIPData.bytes] : @"" );
 #endif
-
+        
         NSEnumerator *ipEnum = nil;
         NSString *anIP = nil;
         BOOL anyConnections = TRUE; // Sadly it looks like the local IP's bypass the firewall anyhow
-
+        
 #if defined(WITH_EXTERNAL_IP)
         if (externalIPString.length && [commonIPAddresses indexOfObject:externalIPString] == NSNotFound)
             [commonIPAddresses insertObject:externalIPString atIndex:0];
 #endif
-
+        
         ipEnum = [commonIPAddresses objectEnumerator];
         while (anIP = [ipEnum nextObject]) {
 #if defined(WITH_EXTERNAL_IP)
@@ -278,8 +278,8 @@ static NSMutableArray *localIPAddresses(void) {
 #else
             bool isExternal = false;
 #endif
-            NSMutableAttributedString *ipString = [[[NSMutableAttributedString alloc] initWithString: anIP] autorelease];
-
+            NSMutableAttributedString *ipString = [[NSMutableAttributedString alloc] initWithString: anIP];
+            
             if ([anIP hasPrefix:@"127.0.0.1"] || // localhost entries
                 [anIP rangeOfString:@"::"].location != NSNotFound) {
                 continue;
@@ -289,15 +289,15 @@ static NSMutableArray *localIPAddresses(void) {
             } else {
                 [ipString replaceCharactersInRange:NSMakeRange(ipString.length,0) withString:@"\tInternal"];
             }
-
+            
             if (controller && !limitToLocalConnections.state) { // Colorize and add tooltip
-
+                
                 NSURL *testURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d",
                                                        anIP, self.runningPortNum]];
                 NSData *testData = [NSData dataWithContentsOfURL:testURL];
                 NSString *testString = (testData.length
                                         ? [NSString stringWithUTF8String: testData.bytes] : @"");
-
+                
                 if ([testString hasPrefix:@"RFB"]) {
                     [ipString replaceCharactersInRange:NSMakeRange(ipString.length,0) withString:@"\tNetwork is configured to allow connections to this IP"];
                     [ipString addAttribute:NSForegroundColorAttributeName value:successColor range:NSMakeRange(0,ipString.length)];
@@ -310,27 +310,27 @@ static NSMutableArray *localIPAddresses(void) {
             }
             else // We don't want to warn about the firewall if we don't actually do the detection
                 anyConnections = TRUE;
-
+            
             [displayIPAddresses addObject: ipString];
         }
-
+        
         if (!anyConnections)
             [self performSelectorOnMainThread:@selector(addStatusMessage:) withObject: @"\n(It appears that your firewall is not permitting VNC connections)" waitUntilDone:NO];
-
+        
         [self performSelectorOnMainThread:@selector(updateHostNames:) withObject: commonHostNames waitUntilDone:NO];
         [self performSelectorOnMainThread:@selector(updateIPAddresses:) withObject: displayIPAddresses waitUntilDone:NO];
-
+        
         waitingForHostInfo = FALSE;
     }
     NS_HANDLER
     NSLog(@"Exception in updateHostInfo: %@", localException);
     NS_ENDHANDLER
-    [pool release];
+}
 }
 
 // Display Host Names
 - (void) updateHostNames: (NSArray *) newHostNames {
-    NSMutableArray *commonHostNames = [[newHostNames mutableCopy] autorelease];
+    NSMutableArray *commonHostNames = [newHostNames mutableCopy];
     [commonHostNames removeObject:@"localhost"];
 
     if (commonHostNames.count > 1) {
@@ -352,10 +352,9 @@ static NSMutableArray *localIPAddresses(void) {
     [ipAddressesView renewRows:0 columns:2];
 
     id ipAddressEnum = [commonIPAddresses objectEnumerator];
-    id ipAddress = nil;
     int i = 0;
 
-    while (ipAddress = [ipAddressEnum nextObject]) {
+    for (id ipAddress in commonIPAddresses) {
         NSString *anIP = [ipAddress string];
         if ([anIP hasPrefix:@"127.0.0.1"] || // localhost entries
             [anIP rangeOfString:@"::"].location != NSNotFound) {
@@ -396,11 +395,11 @@ static NSMutableArray *localIPAddresses(void) {
     }
 }
 
-- (void) addStatusMessage: message {
+- (void) addStatusMessage:(id) message {
     if ([message isKindOfClass:[NSAttributedString class]])
         [statusMessageField.textStorage appendAttributedString:message];
     else if ([message isKindOfClass:[NSString class]])
-        [statusMessageField.textStorage appendAttributedString:[[[NSAttributedString alloc] initWithString:message] autorelease]];
+        [statusMessageField.textStorage appendAttributedString:[[NSAttributedString alloc] initWithString:message]];
 }
 
 - (NSWindow *) window {
@@ -414,13 +413,11 @@ static NSMutableArray *localIPAddresses(void) {
                                @"/tmp/.vinevncauth"];
     NSEnumerator *passwordEnumerators = [passwordFiles objectEnumerator];
 
-    [passwordFile release];
     passwordFile = nil;
     // Find first writable location for the password file
     while (passwordFile = [passwordEnumerators nextObject]) {
         passwordFile = passwordFile.stringByStandardizingPath;
         if (passwordFile.length && [[NSFileManager defaultManager] canWriteToFile:passwordFile]) {
-            [passwordFile retain];
             break;
         }
     }
@@ -434,13 +431,11 @@ static NSMutableArray *localIPAddresses(void) {
                           [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"VineServer.log"]];
     NSEnumerator *logEnumerators = [logFiles objectEnumerator];
 
-    [logFile release];
     logFile = nil;
     // Find first writable location for the log file
     while (logFile = [logEnumerators nextObject]) {
         logFile = logFile.stringByStandardizingPath;
         if (logFile.length && [[NSFileManager defaultManager] canWriteToFile:logFile]) {
-            [logFile retain];
             break;
         }
     }
@@ -463,7 +458,7 @@ static NSMutableArray *localIPAddresses(void) {
         [self loadUserDefaults: self];
         [self saveUserDefaults: self];
         oldPrefs = [oldPrefs mutableCopy];
-        ((NSMutableDictionary *)oldPrefs)[@"Converted"] = [NSNumber numberWithBool:TRUE]; // Record that we've converted
+        ((NSMutableDictionary *)oldPrefs)[@"Converted"] = @YES; // Record that we've converted
         [[NSUserDefaults standardUserDefaults] setPersistentDomain:oldPrefs
                                                            forName:@"OSXvnc"]; // write it back
     }
@@ -515,7 +510,6 @@ static NSMutableArray *localIPAddresses(void) {
 - (void) updateUIForConnectionList: (NSArray *) connectionList {
     NSMutableString *statusMessage = [NSMutableString string];
 
-    [clientList autorelease];
     clientList = [connectionList copy];
 
     NSUInteger activeConnectionsCount = clientList.count;
@@ -860,7 +854,7 @@ static NSMutableArray *localIPAddresses(void) {
             [serverOutput truncateFileAtOffset:0];
             [serverOutput closeFile];
         }
-        serverOutput = [[NSFileHandle fileHandleForUpdatingAtPath:logFile] retain];
+        serverOutput = [NSFileHandle fileHandleForUpdatingAtPath:logFile];
         [serverOutput writeData:[noteStartup dataUsingEncoding: NSUTF8StringEncoding]];
         [serverOutput writeData:[[argv componentsJoinedByString:@" "] dataUsingEncoding: NSUTF8StringEncoding]];
         [serverOutput writeData:[@"\n\n" dataUsingEncoding: NSUTF8StringEncoding]];
@@ -879,8 +873,7 @@ static NSMutableArray *localIPAddresses(void) {
 
         [controller launch];
 
-        [lastLaunchTime release];
-        lastLaunchTime = [[NSDate date] retain];
+        lastLaunchTime = [NSDate date];
 
         [[NSNotificationCenter defaultCenter] addObserver: self
                                                  selector: @selector(serverStopped:)
@@ -895,7 +888,7 @@ static NSMutableArray *localIPAddresses(void) {
         [startServerButton setTitle:NSLocalizedString(@"Restart Server", nil)];
         [startServerMenuItem setTitle:NSLocalizedString(@"Restart Server", nil)];
         [stopServerButton setEnabled:TRUE];
-        serverMenuItem.state = NSOnState;
+        serverMenuItem.state = NSControlStateValueOn;
         // We really don't want people to accidentally stop the server
         //[startServerButton setKeyEquivalent:@""];
         //[stopServerButton setKeyEquivalent:@"\r"];
@@ -976,10 +969,8 @@ static NSMutableArray *localIPAddresses(void) {
         -lastLaunchTime.timeIntervalSinceNow > 1.0)
         relaunchServer = YES;
 
-    [controller release];
     controller = nil;
     [serverOutput closeFile];
-    [serverOutput release];
     serverOutput = nil;
 
     // If it crashes in less than a second it probably can't launch
@@ -1590,7 +1581,6 @@ static NSMutableArray *localIPAddresses(void) {
 
     [self loadUIForSystemServer];
 
-    [myAuthorization release];
     myAuthorization = nil;
 }
 
@@ -1652,20 +1642,8 @@ static NSMutableArray *localIPAddresses(void) {
     }
 
     if (sender != self) {
-        [myAuthorization release];
         myAuthorization = nil;
     }
-}
-
-- (void) dealloc {
-    [passwordFile release];
-    [logFile release];
-    [myAuthorization release];
-    myAuthorization = nil;
-    [bundleArray release];
-    bundleArray = nil;
-
-    [super dealloc];
 }
 
 @end

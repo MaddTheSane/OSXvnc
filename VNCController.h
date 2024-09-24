@@ -10,7 +10,7 @@
 
 #import "NSAuthorization.h"
 
-@interface VNCController : NSObject {
+@interface VNCController : NSObject <NSMenuItemValidation> {
     IBOutlet NSMenuItem *startServerMenuItem;
     IBOutlet NSMenuItem *stopServerMenuItem;
 
@@ -144,38 +144,36 @@
 - (void) loadUIForSystemServer;
 - (void) loadUIForPort: (NSInteger) port;
 
-- (void) loadUserDefaults: sender;
-- (void) saveUserDefaults: sender;
+- (IBAction) loadUserDefaults:(id) sender;
+- (IBAction) saveUserDefaults:(id) sender;
 
-- (IBAction) validateInitialAuthentication: sender;
-- (IBAction) setInitialAuthentication: sender;
+- (IBAction) validateInitialAuthentication:(id) sender;
+- (IBAction) setInitialAuthentication:(id) sender;
 
 - (NSMutableArray *) formCommandLineForSystemServer: (BOOL) isSystemServer;
 
-- (IBAction) startServer: sender;
-- (IBAction) stopServer: sender;
+- (IBAction) startServer:(id) sender;
+- (IBAction) stopServer:(id) sender;
 - (void) serverStopped: (NSNotification *) aNotification;
 
-- (IBAction) changeDisplayNumber: sender;
-- (IBAction) changePort: sender;
-- (IBAction) changeSharing: sender;
-- (IBAction) changeAuthenticationType: sender;
-- (IBAction) changePassword: sender;
-- (IBAction) changeDisplayName: sender;
-- (IBAction) optionChanged: sender;
+- (IBAction) changeDisplayNumber:(id) sender;
+- (IBAction) changePort: (id)sender;
+- (IBAction) changeSharing:(id) sender;
+- (IBAction) changeAuthenticationType: (id)sender;
+- (IBAction) changePassword: (id)sender;
+- (IBAction) changeDisplayName: (id)sender;
+- (IBAction) optionChanged:(id) sender;
 
-- (IBAction) changeSystemServerPort: sender;
-- (IBAction) changeSystemServerAuthentication: sender;
+- (IBAction) changeSystemServerPort:(id) sender;
+- (IBAction) changeSystemServerAuthentication:(id) sender;
 
-- (IBAction) reverseConnection: sender;
-- (IBAction) cancelConnectHost: sender;
-- (IBAction) connectHost: sender;
+- (IBAction) reverseConnection:(id) sender;
+- (IBAction) cancelConnectHost:(id) sender;
+- (IBAction) connectHost:(id) sender;
 
 - (void) checkForRestart;
 
 - (void) applicationWillTerminate: (NSNotification *) notification;
-
-- (BOOL) validateMenuItem: (NSMenuItem *) menuItem ;
 
 // Menu Items
 - (IBAction) openFirewall:(id) sender;
@@ -184,9 +182,9 @@
 - (IBAction) openReleaseNotes:(id) sender;
 - (IBAction) openFile:(id) sender;
 
-- (IBAction) installAsService: sender;
-- (IBAction) removeService: sender;
+- (IBAction) installAsService:(id) sender;
+- (IBAction) removeService:(id) sender;
 
-- (IBAction) terminateRequest: sender;
+- (IBAction) terminateRequest:(id) sender;
 
 @end
