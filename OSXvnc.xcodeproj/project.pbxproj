@@ -960,6 +960,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "";
 				INFOPLIST_FILE = "VineServer-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INSTALL_PATH = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-mannheim.VineServer";
 				PRODUCT_NAME = "Vine Server";
@@ -979,6 +980,7 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = "";
 				INFOPLIST_FILE = "VineServer-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INSTALL_PATH = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-mannheim.VineServer";
 				PRODUCT_NAME = "Vine Server";
