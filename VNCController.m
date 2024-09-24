@@ -262,8 +262,6 @@ static NSMutableArray *localIPAddresses(void) {
         NSString *externalIPString = (externalIPData.length ? [NSString stringWithUTF8String: externalIPData.bytes] : @"" );
 #endif
         
-        NSEnumerator *ipEnum = nil;
-        NSString *anIP = nil;
         BOOL anyConnections = TRUE; // Sadly it looks like the local IP's bypass the firewall anyhow
         
 #if defined(WITH_EXTERNAL_IP)
@@ -271,8 +269,7 @@ static NSMutableArray *localIPAddresses(void) {
             [commonIPAddresses insertObject:externalIPString atIndex:0];
 #endif
         
-        ipEnum = [commonIPAddresses objectEnumerator];
-        while (anIP = [ipEnum nextObject]) {
+        for (NSString *anIP in commonIPAddresses) {
 #if defined(WITH_EXTERNAL_IP)
             BOOL isExternal = [externalIPString isEqualToString:anIP];
 #else
@@ -415,7 +412,7 @@ static NSMutableArray *localIPAddresses(void) {
 
     passwordFile = nil;
     // Find first writable location for the password file
-    while (passwordFile = [passwordEnumerators nextObject]) {
+    for (passwordFile in passwordEnumerators) {
         passwordFile = passwordFile.stringByStandardizingPath;
         if (passwordFile.length && [[NSFileManager defaultManager] canWriteToFile:passwordFile]) {
             break;
@@ -433,7 +430,7 @@ static NSMutableArray *localIPAddresses(void) {
 
     logFile = nil;
     // Find first writable location for the log file
-    while (logFile = [logEnumerators nextObject]) {
+    for (logFile in logEnumerators) {
         logFile = logFile.stringByStandardizingPath;
         if (logFile.length && [[NSFileManager defaultManager] canWriteToFile:logFile]) {
             break;
@@ -1507,7 +1504,7 @@ static NSMutableArray *localIPAddresses(void) {
         NSEnumerator *bundleEnum = [[NSBundle pathsForResourcesOfType:@"bundle" inDirectory:[NSBundle mainBundle].resourcePath] objectEnumerator];
         NSString *bundlePath = nil;
 
-        while (bundlePath = [bundleEnum nextObject]) {
+        for (bundlePath in bundleEnum) {
             [copyArgsArray removeAllObjects];
             [copyArgsArray addObject:@"-R"]; // Recursive
             [copyArgsArray addObject:@"-f"]; // Force Copy (overwrite existing)

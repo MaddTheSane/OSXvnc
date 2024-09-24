@@ -177,7 +177,7 @@
 		ABFC222B0AF08CBA00BCE727 /* VineServer.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = VineServer.icns; sourceTree = "<group>"; };
 		F538E01002F9812901A80186 /* auth.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = auth.c; sourceTree = "<group>"; };
 		F538E01302F9812901A80186 /* corre.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = corre.c; sourceTree = "<group>"; };
-		F538E01402F9812901A80186 /* cutpaste.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = cutpaste.c; sourceTree = "<group>"; };
+		F538E01402F9812901A80186 /* cutpaste.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = cutpaste.c; sourceTree = "<group>"; usesTabs = 1; };
 		F538E01502F9812901A80186 /* dimming.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dimming.c; sourceTree = "<group>"; };
 		F538E01602F9812901A80186 /* hextile.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; path = hextile.c; sourceTree = "<group>"; };
 		F538E01902F9812901A80186 /* keysym.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keysym.h; sourceTree = "<group>"; };
@@ -416,6 +416,7 @@
 			);
 			path = "OSXvnc-server";
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		F538E01702F9812901A80186 /* include */ = {
 			isa = PBXGroup;

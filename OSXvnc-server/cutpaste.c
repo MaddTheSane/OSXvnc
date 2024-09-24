@@ -218,8 +218,7 @@ static BOOL debugPB = NO;
 					if (floor(NSAppKitVersionNumber) > floor(NSAppKitVersionNumber10_3)) { // Tiger+
 						NSDictionary *filesDict = theWrapper.fileWrappers;
 						NSEnumerator *fileEnum = [filesDict keyEnumerator];
-						NSString *aFilename;
-						while (aFilename = [fileEnum nextObject]) {
+						for (NSString *aFilename in fileEnum) {
 							[filenames addObject:[filename stringByAppendingPathComponent:aFilename]];
 						}
 						[theWrapper writeToFile:filename atomically:NO updateFilenames:NO];
@@ -234,8 +233,7 @@ static BOOL debugPB = NO;
 						// let's avoid saving the extra .tiff files that seem to get written for each file
 						NSDictionary *filesDict = theWrapper.fileWrappers;
 						NSEnumerator *fileEnum = [filesDict keyEnumerator];
-						NSString *aFilename;
-						while (aFilename = [fileEnum nextObject]) {
+						for (NSString *aFilename in fileEnum) {
 							NSFileWrapper *singleItemWrapper = filesDict[aFilename];
 							NSString *singleItemPath = [filename stringByAppendingPathComponent:aFilename];
 							[singleItemWrapper writeToFile:singleItemPath atomically:NO updateFilenames:NO];
@@ -318,7 +316,7 @@ NSRecursiveLock *pasteboardVariablesLock = nil;
 
 NSString *pasteboardString = nil;
 NSString *clientCutText = nil;
-NSMutableDictionary *pasteboards = nil;
+NSMutableDictionary<NSPasteboardName, NSMutableArray*> *pasteboards = nil;
 
 unsigned long long maxTransferSize = 0x10000000;
 
@@ -344,13 +342,11 @@ void initPasteboard(void) {
 		rfbDisableRichClipboards = TRUE;
 	}
 	else {
-		NSArray *pbNames = @[NSGeneralPboard, NSRulerPboard, NSFontPboard, NSFindPboard, NSDragPboard];
-		NSEnumerator *objEnum = [pbNames objectEnumerator];
-		NSString *aPasteboard = nil;
+		NSArray<NSPasteboardName> *pbNames = @[NSPasteboardNameGeneral, NSPasteboardNameRuler, NSPasteboardNameFont, NSPasteboardNameFind, NSPasteboardNameDrag];
 
 		pasteboards = [[NSMutableDictionary alloc] init];
 
-		while (aPasteboard = [objEnum nextObject]) {
+		for (NSPasteboardName aPasteboard in pbNames) {
 			// Each Pasteboard has an array with item 0 = the ChangeCount and item 1 = the AvailableTypes Array
 			pasteboards[aPasteboard] = [NSMutableArray arrayWithObjects:@0, [NSArray array], nil];
 		}
@@ -490,14 +486,13 @@ static NSArray *getListOfFilenamesFromPasteboard(NSPasteboard *thePasteboard) {
 // We call this in the main thread to see if we have a new pasteboard change and should notify clients to do an update
 void rfbCheckForPasteboardChange(void) {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSEnumerator *pasteboardsEnum = [pasteboards keyEnumerator];
-	NSString *pasteboardName = nil;
+	NSEnumerator<NSPasteboardName> *pasteboardsEnum = [pasteboards keyEnumerator];
 
 	[pasteboardVariablesLock lock]; // Protect references to clientCutText
 	NS_DURING
 		if (clientCutText) {
-			if ([[NSPasteboard generalPasteboard] declareTypes:@[NSStringPboardType] owner:nil]) {
-				[[NSPasteboard generalPasteboard] setString:clientCutText forType:NSStringPboardType];
+			if ([[NSPasteboard generalPasteboard] declareTypes:@[NSPasteboardTypeString] owner:nil]) {
+				[[NSPasteboard generalPasteboard] setString:clientCutText forType:NSPasteboardTypeString];
 			}
 			[clientCutText release];
 			clientCutText = nil;
@@ -513,12 +508,12 @@ void rfbCheckForPasteboardChange(void) {
 		rfbClientIteratorPtr iterator = rfbGetClientIterator();
 
 		// Let's grab a copy of it here in the Main/Event Thread so that the output threads don't have to deal with the PB directly
-		if ([[NSPasteboard generalPasteboard] availableTypeFromArray:@[NSStringPboardType]]) {
+		if ([[NSPasteboard generalPasteboard] availableTypeFromArray:@[NSPasteboardTypeString]]) {
 			[pasteboardVariablesLock lock];
 			// Record first in case another event comes in after notifying clients
 			generalPBLastChangeCount = (int)[NSPasteboard generalPasteboard].changeCount;
 			[pasteboardString release];
-			pasteboardString = [[[NSPasteboard generalPasteboard] stringForType:NSStringPboardType] copy];
+			pasteboardString = [[[NSPasteboard generalPasteboard] stringForType:NSPasteboardTypeString] copy];
 			[pasteboardVariablesLock unlock];
 		}
 
@@ -531,7 +526,7 @@ void rfbCheckForPasteboardChange(void) {
 	}
 
 	// Check EACH pasteboard  by name to see if it has new data
-	while (pasteboardName = [pasteboardsEnum nextObject]) {
+	for (NSPasteboardName pasteboardName in pasteboardsEnum) {
 		NSMutableArray *pbInfoArray = pasteboards[pasteboardName];
 		NSPasteboard *thePasteboard = [NSPasteboard pasteboardWithName:pasteboardName];
 
@@ -761,13 +756,12 @@ void rfbClientUpdatePasteboard(rfbClientPtr cl) {
 		// Send the acknowledgement but no clipboard data
 		else if (cl->generalPBLastChange == -3) {
 			NSEnumerator *pasteboardsEnum = [pasteboards keyEnumerator];
-			NSString *pasteboardName = nil;
 
 			rfbSendRichClipboardAck(cl);
 
 			[pasteboardVariablesLock lock]; // Protect references to pasteboards
 			cl->generalPBLastChange = generalPBLastChangeCount;
-			while (pasteboardName = [pasteboardsEnum nextObject]) {
+			for (NSPasteboardName pasteboardName in pasteboardsEnum) {
 				NSMutableArray *pbInfoArray = pasteboards[pasteboardName];
 
 				((NSMutableDictionary *)cl->richClipboardChangeCounts)[pasteboardName] = pbInfoArray[0];
@@ -776,11 +770,11 @@ void rfbClientUpdatePasteboard(rfbClientPtr cl) {
 		}
 		else {
 			if (cl->richClipboardSupport) {
-				NSEnumerator *pasteboardsEnum = [pasteboards keyEnumerator];
+				NSEnumerator<NSPasteboardName> *pasteboardsEnum = [pasteboards keyEnumerator];
 				NSString *pasteboardName = nil;
 
 				[pasteboardVariablesLock lock]; // Protect references to pasteboards
-				while (pasteboardName = [pasteboardsEnum nextObject]) {
+				for (NSPasteboardName pasteboardName in pasteboardsEnum) {
 					NSMutableArray *pbInfoArray = pasteboards[pasteboardName];
 					int changeCountForPasteboard = [((NSDictionary *)cl->richClipboardChangeCounts)[pasteboardName] intValue];
 
