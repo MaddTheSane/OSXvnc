@@ -644,7 +644,7 @@ static NSMutableArray *localIPAddresses(void) {
     }
 
     disableStartupButton.enabled = systemServerIsConfigured;
-	systemServerMenu.state = (systemServerIsConfigured ? NSControlStateValueOn : NSControlStateValueOff);
+    systemServerMenu.state = (systemServerIsConfigured ? NSControlStateValueOn : NSControlStateValueOff);
     setStartupButton.title = (systemServerIsConfigured ? NSLocalizedString(@"Restart System Server", nil) : NSLocalizedString(@"Start System Server", nil));
 }
 
@@ -883,7 +883,7 @@ static NSMutableArray *localIPAddresses(void) {
         lastLaunchTime = [[NSDate date] retain];
 
         [[NSNotificationCenter defaultCenter] addObserver: self
-                                                 selector: NSSelectorFromString(@"serverStopped:")
+                                                 selector: @selector(serverStopped:)
                                                      name: NSTaskDidTerminateNotification
                                                    object: controller];
 
@@ -948,7 +948,7 @@ static NSMutableArray *localIPAddresses(void) {
     [startServerMenuItem setTitle:NSLocalizedString(@"Start Server", nil)];
     //[startServerButton setEnabled:TRUE];
     [stopServerButton setEnabled:FALSE];
-	serverMenuItem.state = NSControlStateValueOff;
+    serverMenuItem.state = NSControlStateValueOff;
     //[stopServerButton setKeyEquivalent:@""];
     //[startServerButton setKeyEquivalent:@"\r"];
 
@@ -1425,7 +1425,8 @@ static NSMutableArray *localIPAddresses(void) {
 }
 
 - (IBAction) openFirewall:(id) sender {
-    [[NSWorkspace sharedWorkspace] openFile: @"/System/Library/PreferencePanes/Security.prefPane"];
+    NSURL *aURL = [NSURL fileURLWithPath:@"/System/Library/PreferencePanes/Security.prefPane"];
+    [[NSWorkspace sharedWorkspace] openURL: aURL];
 }
 
 - (IBAction) openLog:(id) sender {
@@ -1433,31 +1434,31 @@ static NSMutableArray *localIPAddresses(void) {
 }
 
 - (IBAction) openGPL:(id) sender {
-    NSString *openPath = [[NSBundle mainBundle] pathForResource:@"Copying" ofType:@"rtf"];
+    NSURL *openPath = [[NSBundle mainBundle] URLForResource:@"Copying" withExtension:@"rtf"];
 
-    [[NSWorkspace sharedWorkspace] openFile:openPath];
+    [[NSWorkspace sharedWorkspace] openURL:openPath];
 }
 
 - (IBAction) openReleaseNotes:(id) sender {
-    NSString *openPath = [[NSBundle mainBundle] pathForResource:@"Vine Server Release Notes" ofType:@"rtf"];
+    NSURL *openPath = [[NSBundle mainBundle] URLForResource:@"Vine Server Release Notes" withExtension:@"rtf"];
 
-    [[NSWorkspace sharedWorkspace] openFile:openPath];
+    [[NSWorkspace sharedWorkspace] openURL:openPath];
 }
 
 - (IBAction) openFile:(id) sender {
-    NSString *openPath = [[NSBundle mainBundle] pathForResource:[sender title] ofType:@"rtf"];
+    NSURL *openPath = [[NSBundle mainBundle] URLForResource:[sender title] withExtension:@"rtf"];
 
     if (!openPath) {
-        openPath = [[NSBundle mainBundle] pathForResource:[sender title] ofType:@"pdf"];
+        openPath = [[NSBundle mainBundle] URLForResource:[sender title] withExtension:@"pdf"];
     }
     if (!openPath) {
-        openPath = [[NSBundle mainBundle] pathForResource:[sender title] ofType:@"txt"];
+        openPath = [[NSBundle mainBundle] URLForResource:[sender title] withExtension:@"txt"];
     }
     if (!openPath) {
-        openPath = [[NSBundle mainBundle] pathForResource:[sender title] ofType:nil];
+        openPath = [[NSBundle mainBundle] URLForResource:[sender title] withExtension:nil];
     }
 
-    [[NSWorkspace sharedWorkspace] openFile:openPath];
+    [[NSWorkspace sharedWorkspace] openURL:openPath];
 }
 
 - (BOOL) installLaunchd {
