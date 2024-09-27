@@ -540,9 +540,8 @@ static bool isConsoleSession(void) {
 - (void) handleMouseButtons:(int) buttonMask atPoint:(NSPoint) aPoint forClient: (rfbClientPtr) cl {
     rfbUndim();
 
-    if (buttonMask & rfbWheelMask) {
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-        NSUserDefaults *currentUserDefs = [[NSUserDefaults alloc] initWithUser:NSUserName()];
+    if (buttonMask & rfbWheelMask) @autoreleasepool {
+        NSUserDefaults *currentUserDefs = [[NSUserDefaults alloc] init];
         int mouseWheelDistance;
 
         // I would rather cache this data than look it up each time but I don't know how to get notification of a change
@@ -550,7 +549,6 @@ static bool isConsoleSession(void) {
         // B - Running OSXvnc as root and user swiches
 
         mouseWheelDistance = 8 * [currentUserDefs floatForKey:@"com.apple.scrollwheel.scaling"];
-        [currentUserDefs dealloc];
         if (!mouseWheelDistance)
             mouseWheelDistance = 10;
 
@@ -565,8 +563,6 @@ static bool isConsoleSession(void) {
             CGEventPost(vncTapLocation, scrollEvent);
             CFRelease(scrollEvent);
         }
-
-        [pool release];
     }
     else {
         cl->clientCursorLocation.x = aPoint.x;
@@ -825,8 +821,7 @@ static bool isConsoleSession(void) {
         NSLog(@"Started listener thread on IPv6 port %d", theServer->rfbPort);
         listenerFinished = TRUE;
 
-        while ((client_fd = accept(listen_fd6, (struct sockaddr *) &peer6, &len6)) !=-1) {
-            NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
+        while ((client_fd = accept(listen_fd6, (struct sockaddr *) &peer6, &len6)) !=-1) @autoreleasepool {
 
             [[NSNotificationCenter defaultCenter] postNotification:
              [NSNotification notificationWithName:@"NewRFBClient" object:@(client_fd)]];
@@ -834,7 +829,6 @@ static bool isConsoleSession(void) {
             // We have to trigger a signal so the event loop will pickup (if no clients are connected)
             pthread_cond_signal(&(theServer->listenerGotNewClient));
 
-            [pool release];
         }
 
         NSLog(@"IPv6: Accept failed %d", errno);
@@ -845,61 +839,61 @@ static bool isConsoleSession(void) {
 }
 
 - (void) registerRendezvous {
-    NSAutoreleasePool *tempPool = [[NSAutoreleasePool alloc] init];
-    BOOL loadRendezvousVNC = NO;
-    BOOL loadRendezvousRFB = YES;
-    NSUInteger argumentIndex = [[NSProcessInfo processInfo].arguments indexOfObject:@"-rendezvous"];
-    RendezvousDelegate *rendezvousDelegate = [[RendezvousDelegate alloc] init];
-
-    if (argumentIndex == NSNotFound) {
-        argumentIndex = [[NSProcessInfo processInfo].arguments indexOfObject:@"-bonjour"];
-    }
-
-    if (argumentIndex != NSNotFound) {
-        NSString *value = nil;
-
-        if ([NSProcessInfo processInfo].arguments.count > argumentIndex + 1)
-            value = [NSProcessInfo processInfo].arguments[argumentIndex+1];
-
-        if ([value hasPrefix:@"n"] || [value hasPrefix:@"N"] || [value hasPrefix:@"0"]) {
-            loadRendezvousVNC = NO; loadRendezvousRFB = NO;
+    @autoreleasepool {
+        BOOL loadRendezvousVNC = NO;
+        BOOL loadRendezvousRFB = YES;
+        NSUInteger argumentIndex = [[NSProcessInfo processInfo].arguments indexOfObject:@"-rendezvous"];
+        RendezvousDelegate *rendezvousDelegate = [[RendezvousDelegate alloc] init];
+        
+        if (argumentIndex == NSNotFound) {
+            argumentIndex = [[NSProcessInfo processInfo].arguments indexOfObject:@"-bonjour"];
         }
-        else if ([value hasPrefix:@"y"] || [value hasPrefix:@"Y"] || [value hasPrefix:@"1"] || [value hasPrefix:@"rfb"]) {
-            loadRendezvousVNC = NO; loadRendezvousRFB = YES;
+        
+        if (argumentIndex != NSNotFound) {
+            NSString *value = nil;
+            
+            if ([NSProcessInfo processInfo].arguments.count > argumentIndex + 1)
+                value = [NSProcessInfo processInfo].arguments[argumentIndex+1];
+            
+            if ([value hasPrefix:@"n"] || [value hasPrefix:@"N"] || [value hasPrefix:@"0"]) {
+                loadRendezvousVNC = NO; loadRendezvousRFB = NO;
+            }
+            else if ([value hasPrefix:@"y"] || [value hasPrefix:@"Y"] || [value hasPrefix:@"1"] || [value hasPrefix:@"rfb"]) {
+                loadRendezvousVNC = NO; loadRendezvousRFB = YES;
+            }
+            else if ([value hasPrefix:@"b"] || [value hasPrefix:@"B"] || [value hasPrefix:@"2"]) {
+                loadRendezvousVNC = YES; loadRendezvousRFB = YES;
+            }
+            else if ([value hasPrefix:@"vnc"]) {
+                loadRendezvousVNC = YES; loadRendezvousRFB = NO;
+            }
         }
-        else if ([value hasPrefix:@"b"] || [value hasPrefix:@"B"] || [value hasPrefix:@"2"]) {
-            loadRendezvousVNC = YES; loadRendezvousRFB = YES;
+        
+        // Register For Rendezvous
+        if (loadRendezvousRFB) {
+            rfbService = [[NSNetService alloc] initWithDomain:@""
+                                                         type:@"_rfb._tcp."
+                                                         name:@(theServer->desktopName)
+                                                         port:(int) theServer->rfbPort];
+            rfbService.delegate = rendezvousDelegate;
+            [rfbService publish];
         }
-        else if ([value hasPrefix:@"vnc"]) {
-            loadRendezvousVNC = YES; loadRendezvousRFB = NO;
+        //    else
+        //        NSLog(@"Bonjour (_rfb._tcp) - Disabled");
+        
+        if (loadRendezvousVNC) {
+            vncService = [[NSNetService alloc] initWithDomain:@""
+                                                         type:@"_vnc._tcp."
+                                                         name:@(theServer->desktopName)
+                                                         port:(int) theServer->rfbPort];
+            vncService.delegate = rendezvousDelegate;
+            
+            [vncService publish];
         }
+        //    else
+        //        NSLog(@"Bonjour (_vnc._tcp) - Disabled");
+        
     }
-
-    // Register For Rendezvous
-    if (loadRendezvousRFB) {
-        rfbService = [[NSNetService alloc] initWithDomain:@""
-                                                     type:@"_rfb._tcp."
-                                                     name:@(theServer->desktopName)
-                                                     port:(int) theServer->rfbPort];
-        rfbService.delegate = rendezvousDelegate;
-        [rfbService publish];
-    }
-    //    else
-    //        NSLog(@"Bonjour (_rfb._tcp) - Disabled");
-
-    if (loadRendezvousVNC) {
-        vncService = [[NSNetService alloc] initWithDomain:@""
-                                                     type:@"_vnc._tcp."
-                                                     name:@(theServer->desktopName)
-                                                     port:(int) theServer->rfbPort];
-        vncService.delegate = rendezvousDelegate;
-
-        [vncService publish];
-    }
-    //    else
-    //        NSLog(@"Bonjour (_vnc._tcp) - Disabled");
-
-    [tempPool release];
 }
 
 - (void) rfbReceivedClientMessage {
@@ -921,15 +915,13 @@ static bool isConsoleSession(void) {
 }
 
 - (void) connectHost: (NSNotification *) aNotification {
-    NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
-
-    char *reverseHost = (char *)[aNotification.userInfo[@"ConnectHost"] UTF8String];
-    int reversePort = [aNotification.userInfo[@"ConnectPort"] intValue];
-
-    NSLog(@"Connecting VNC Client %s(%d)",reverseHost,reversePort);
-    connectReverseClient(reverseHost,reversePort);
-
-    [pool release];
+    @autoreleasepool {
+        char *reverseHost = (char *)[aNotification.userInfo[@"ConnectHost"] UTF8String];
+        int reversePort = [aNotification.userInfo[@"ConnectPort"] intValue];
+        
+        NSLog(@"Connecting VNC Client %s(%d)",reverseHost,reversePort);
+        connectReverseClient(reverseHost,reversePort);
+    }
 }
 
 @end

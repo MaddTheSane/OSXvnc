@@ -98,7 +98,7 @@ Bool rfbClientsConnected(void)
 static void rfbSendClientList(void) {
     pthread_mutex_lock(&rfbClientListMutex);
 
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
     NSMutableArray *clientList = [[NSMutableArray alloc] init];
     rfbClientPtr myClient = rfbClientHead;
 
@@ -111,7 +111,7 @@ static void rfbSendClientList(void) {
                                                                    object:[NSString stringWithFormat:@"OSXvnc%d",rfbPort]
                                                                  userInfo:@{@"clientList": clientList}];
 
-    [pool release];
+    }
 
     pthread_mutex_unlock(&rfbClientListMutex);
 }

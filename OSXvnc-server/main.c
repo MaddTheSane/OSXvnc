@@ -130,7 +130,6 @@ void rfbLog(char *format, ...) {
         NS_HANDLER
         NS_ENDHANDLER
         pthread_mutex_unlock(&logMutex);
-        [nsFormat release];
     }
 }
 
@@ -144,7 +143,6 @@ void rfbDebugLog(char *format, ...) {
     NSLogv(nsFormat, args);
     va_end(args);
 
-    [nsFormat release];
     pthread_mutex_unlock(&logMutex);
 #endif
 }
@@ -156,7 +154,7 @@ void rfbLogPerror(char *str) {
 
 // Some calls fail under older OS X'es so we will do some detected loading
 void loadDynamicBundles(BOOL startup) {
-    NSAutoreleasePool *startPool = [[NSAutoreleasePool alloc] init];
+@autoreleasepool {
 
     // Setup thisServer structure
     thisServer.vncServer = vncServerObject;
@@ -168,7 +166,7 @@ void loadDynamicBundles(BOOL startup) {
 
     [[VNCServer sharedServer] rfbStartup: &thisServer];
 
-    [startPool release];
+}
 }
 
 void refreshCallback(CGRectCount count, const CGRect *rectArray, void *ignore) {
@@ -222,7 +220,7 @@ static int bitsPerPixelForDisplay(CGDirectDisplayID dispID) {
                                kCFCompareCaseInsensitive) == kCFCompareEqualTo) {
         bitsPerPixel = 8;
     }
-    [(id)pixelEncoding release];
+    CFRelease(pixelEncoding);
     CGDisplayModeRelease(mode);
     return bitsPerPixel;
 }
@@ -610,8 +608,7 @@ char *rfbGetFramebuffer(void) {
             CFDataRef dataRef = CGDataProviderCopyData(dataProvider);
             frameBufferBytesPerRow = CGImageGetBytesPerRow(imageRef);
             frameBufferBitsPerPixel = CGImageGetBitsPerPixel(imageRef);
-            frameBufferData = [(NSData *)dataRef mutableCopy];
-            CFRelease(dataRef);
+            frameBufferData = [(NSData *)CFBridgingRelease(dataRef) mutableCopy];
 
             if (imageRef != NULL)
                 CGImageRelease(imageRef);
@@ -671,7 +668,7 @@ void rfbGetFramebufferUpdateInRect(int x, int y, int w, int h) {
             NSLog(@"BitsPerPixel MISMATCH: frameBuffer %zu, rect image %zu", frameBufferBitsPerPixel, imgBitsPerPixel);
 
         char *dest = (char *)frameBufferData.mutableBytes + frameBufferBytesPerRow * y + x * (frameBufferBitsPerPixel/8);
-        const char *source = ((NSData *)dataRef).bytes;
+        const char *source = ((__bridge NSData *)dataRef).bytes;
 
         while (h--) {
             memcpy(dest, source, w*(imgBitsPerPixel/8));
@@ -681,7 +678,7 @@ void rfbGetFramebufferUpdateInRect(int x, int y, int w, int h) {
 
         if (imageRef != NULL)
             CGImageRelease(imageRef);
-        [(id)dataRef release];
+        CFRelease(dataRef);
     }
 }
 
@@ -691,8 +688,7 @@ static bool rfbScreenInit(void) {
     int bitsPerSample = 8; // Let's presume 8 bits x 3 samples and hope for the best.....
     int samplesPerPixel = 3;
 
-    [frameBufferData release]; // release previous screen buffer, if any
-    frameBufferData = nil;
+    frameBufferData = nil;// release previous screen buffer, if any
 
     if (displayID == 0) {
         // The display was not selected up to now, so choose the main display.
@@ -1174,7 +1170,7 @@ BOOL runningLittleEndian ( void ) {
 }
 
 int main(int argc, char *argv[]) {
-    NSAutoreleasePool *tempPool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
     vncServerObject = [[VNCServer alloc] init];
     littleEndian = runningLittleEndian();
     checkForUsage(argc,argv);
@@ -1332,7 +1328,7 @@ int main(int argc, char *argv[]) {
     }
 #endif
 
-    [tempPool release];
+    }
 
     rfbShutdown();
 

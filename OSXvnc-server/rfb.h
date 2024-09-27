@@ -43,7 +43,8 @@
 //#import <Carbon/Carbon.h>
 //#include <ApplicationServices/ApplicationServices.h>
 
-#include "CoreGraphics/CGGeometry.h"
+#include <CoreFoundation/CoreFoundation.h>
+#include <CoreGraphics/CGGeometry.h>
 
 #include <IOKit/pwr_mgt/IOPMLib.h>
 
@@ -277,38 +278,38 @@ typedef struct rfbClientRec {
 
     /* REDSTONE - Adding some features */
 
-    Bool disableRemoteEvents;      // Ignore PB, Keyboard and Mouse events
-    Bool swapMouseButtons23;       // How to interpret mouse buttons 2 & 3
-    Bool immediateUpdate;          // To request that we get immediate updates (even 0 rects)
+    Bool disableRemoteEvents;      //!< Ignore PB, Keyboard and Mouse events
+    Bool swapMouseButtons23;       //!< How to interpret mouse buttons 2 & 3
+    Bool immediateUpdate;          //!< To request that we get immediate updates (even 0 rects)
 
-	Bool richClipboardSupport;     // Client has indicated they support rich clipboards
-	void *richClipboardChangeCounts; // Dictionary of local ChangeCount NSNumbers stored by PB Name
+	Bool richClipboardSupport;     //!< Client has indicated they support rich clipboards
+    CFMutableDictionaryRef richClipboardChangeCounts; //!< Dictionary of local ChangeCount NSNumbers stored by PB Name
 
-	/* These store temporary values during a rich clipboard transfer (one at a time per client) */
-	void *clipboardProxy;
+	/*! These store temporary values during a rich clipboard transfer (one at a time per client) */
+    CFTypeRef clipboardProxy;
 	char *richClipboardName;
 	char *richClipboardType;
-	void *richClipboardNSData;
+    CFDataRef richClipboardNSData;
 	int   richClipboardDataChangeCount;
 
-	void *richClipboardReceivedName;
-	void *richClipboardReceivedType;
-	void *richClipboardReceivedNSData;
-	void *receivedFileTempFolder;
+    CFStringRef richClipboardReceivedName;
+    CFStringRef richClipboardReceivedType;
+    CFDataRef richClipboardReceivedNSData;
+    CFStringRef receivedFileTempFolder;
 	int   richClipboardReceivedChangeCount;
 
 
-    int generalPBLastChange;      // Used to see if we need to send the latest general PB
+    int generalPBLastChange;      //!< Used to see if we need to send the latest general PB
 
 	// Cursor Info
 
-    int currentCursorSeed;         // Used to see if we need to send a new cursor
-    CGPoint clientCursorLocation;  // The last location the client left the mouse at
+    int currentCursorSeed;         //!< Used to see if we need to send a new cursor
+    CGPoint clientCursorLocation;  //!< The last location the client left the mouse at
 
-    BOOL needNewScreenSize;        // Flag to indicate we must send a new screen resolution
-    BOOL modiferKeys[256];         // BOOL Array to record which keys THIS user has down, if they disconnect we will release those keys
+    BOOL needNewScreenSize;        //!< Flag to indicate we must send a new screen resolution
+    BOOL modiferKeys[256];         //!< BOOL Array to record which keys THIS user has down, if they disconnect we will release those keys
 
-    /* REDSTONE - These (updateBuf, ublen) need to be in the CL, not global, for multiple clients */
+    /*! REDSTONE - These (updateBuf, ublen) need to be in the CL, not global, for multiple clients */
 	screen_data_t * p_data;
 
     /*

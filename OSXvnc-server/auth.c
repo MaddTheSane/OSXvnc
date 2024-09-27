@@ -53,23 +53,18 @@ int failedAttemptsForClient(rfbClientPtr cl) {
 	[authClientLock	lock];
 	failedAttempts = [authClientFailures[clientHost] intValue];
 	[authClientLock unlock];
-	[clientHost release];
 
 	return failedAttempts;
 }
 
 int incrementFailedAttemptsForClient(rfbClientPtr cl) {
 	NSString *clientHost = [[NSString alloc] initWithCString:cl->host encoding:NSUTF8StringEncoding];
-	NSNumber *failedNumber;
 	int failedAttempts=0;
 
 	[authClientLock	lock];
 	failedAttempts = [authClientFailures[clientHost] intValue] + 1;
-	failedNumber = [[NSNumber alloc] initWithInt:failedAttempts];
-	authClientFailures[clientHost] = failedNumber;
+	authClientFailures[clientHost] = @(failedAttempts);
 	[authClientLock unlock];
-	[failedNumber release];
-	[clientHost release];
 
 	return failedAttempts;
 }
@@ -79,7 +74,6 @@ void clearFailedAttemptsForClient(rfbClientPtr cl) {
 	[authClientLock	lock];
 	[authClientFailures removeObjectForKey:clientHost];
 	[authClientLock	unlock];
-	[clientHost release];
 }
 
 void rfbSecurityResultMessage(rfbClientPtr cl, int result, char *errorString) {

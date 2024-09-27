@@ -79,8 +79,6 @@
 
 - (void) dealloc {
     AuthorizationFree (myAuthorizationRef, kAuthorizationFlagDefaults);
-
-    [super dealloc];
 }
 
 @end
