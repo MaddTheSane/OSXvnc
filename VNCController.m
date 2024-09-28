@@ -1484,8 +1484,7 @@ static NSMutableArray *localIPAddresses(void) {
 
     if (success && argv) {
         NSMutableArray *copyArgsArray = [NSMutableArray array];
-        NSString *executionPath = [[NSBundle mainBundle].bundlePath
-                                   stringByAppendingPathComponent: @"Contents/MacOS/OSXvnc-server"];
+        NSString *executionPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable: @"OSXvnc-server"];
 
         // Copy Server Executable
         [copyArgsArray removeAllObjects];
