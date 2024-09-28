@@ -109,12 +109,11 @@ void rfbSecurityResultMessage(rfbClientPtr cl, int result, char *errorString) {
 	}
 }
 
-/*
+/**
  * rfbAuthNewClient is called when we reach the point of authenticating
  * a new client.  If authentication isn't being used then we simply send
  * rfbNoAuth.  Otherwise we send rfbVncAuth plus the challenge.
  */
-
 void rfbAuthNewClient(rfbClientPtr cl) {
     char buf[4 + CHALLENGESIZE+256];// 256 for error messages
     int len = 0;
@@ -229,7 +228,7 @@ void rfbAuthNewClient(rfbClientPtr cl) {
     }
 }
 
-//init password from commandline
+//! init password from commandline
 bool enterSuppliedPassword(char *passIn){
     NSString *newPass = @(passIn);
     if (newPass.length > 0) {
@@ -292,11 +291,10 @@ void rfbProcessAuthVersion(rfbClientPtr cl) {
     }
 }
 
-/*
+/*!
  * rfbAuthProcessClientMessage is called when the client sends its
  * authentication response.
  */
-
 void rfbAuthProcessClientMessage(rfbClientPtr cl) {
     char *passwd;
     int i, n;

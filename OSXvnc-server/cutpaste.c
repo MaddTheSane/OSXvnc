@@ -244,7 +244,7 @@ static BOOL debugPB = NO;
 				} else {
 					[theWrapper writeToFile:filename atomically:NO updateFilenames:YES];
 				}
-				if ([availableType isEqualToString:NSURLPboardType] || [availableType isEqualToString:CorePasteboardFlavor_furl]) {
+				if ([availableType isEqualToString:NSPasteboardTypeURL] || [availableType isEqualToString:CorePasteboardFlavor_furl]) {
 					// got a URL type -- so put a URL on the PB, even if we already supplied file names
 					NSURL *theUrl = [NSURL fileURLWithPath:filename];
 						//[theUrl writeToPasteboard:thePasteboard];
@@ -364,7 +364,7 @@ void initPasteboardForClient(rfbClientPtr cl) {
 @autoreleasepool {
     /* REDSTONE - Have new client keep his PB currently */
 	cl->generalPBLastChange = -1;
-	cl->richClipboardChangeCounts = CFBridgingRetain([[NSMutableDictionary alloc] init]);
+	cl->richClipboardChangeCounts = (CFMutableDictionaryRef)CFBridgingRetain([[NSMutableDictionary alloc] init]);
 	cl->clipboardProxy = nil;
 	cl->richClipboardName = nil;
 	cl->richClipboardType = nil;
@@ -424,7 +424,7 @@ static BOOL pasteboardRepresentsExistingFile(NSPasteboard *thePasteboard) {
 		// while the client thread waits for the main thread to determine if we have new data
 		return NO;
 	}
-	else if ([pboardTypes containsObject:NSURLPboardType]) {
+	else if ([pboardTypes containsObject:NSPasteboardTypeURL]) {
 		NSURL *theUrl = [NSURL URLFromPasteboard:thePasteboard];
 		if (theUrl.fileURL) {
 			return [[NSFileManager defaultManager] fileExistsAtPath:theUrl.path];
@@ -928,7 +928,7 @@ void rfbReceiveRichClipboardRequest(rfbClientPtr cl) {
 
 		// check whether we need to send file contents in place of another type
 		if (([theType isEqualToString:NSFileContentsPboardType] && ![thePasteboard.types containsObject:NSFileContentsPboardType])
-			|| (([theType isEqualToString:NSFilenamesPboardType] || [theType isEqualToString:NSURLPboardType] || [theType isEqualToString:CorePasteboardFlavor_furl]) && pasteboardRepresentsExistingFile(thePasteboard))) {
+			|| (([theType isEqualToString:NSFilenamesPboardType] || [theType isEqualToString:NSPasteboardTypeURL] || [theType isEqualToString:CorePasteboardFlavor_furl]) && pasteboardRepresentsExistingFile(thePasteboard))) {
 			NSFileManager *fileManager = [NSFileManager defaultManager];
 			NSArray *pboardTypes = thePasteboard.types;
 			NSFileWrapper *theWrapper = nil;
@@ -945,14 +945,14 @@ void rfbReceiveRichClipboardRequest(rfbClientPtr cl) {
 					if (fileNames.count == 1) {
 						NSString *path = fileNames[0];
 						checkTotalSize(&totalSize, path, fileManager);
-						theWrapper = [[NSFileWrapper alloc] initWithPath:path];
+						theWrapper = [[NSFileWrapper alloc] initWithURL:[NSURL fileURLWithPath:path] options:0 error:NULL];
 					} else {
 						int index;
 						NSMutableDictionary *wrappers = [NSMutableDictionary dictionary];
 						for (index = 0; index < fileNames.count; index++) {
 							NSString *path = fileNames[index];
 							if ([fileManager fileExistsAtPath:path]) {
-								NSFileWrapper *wrapper = [[NSFileWrapper alloc] initWithPath:path];
+								NSFileWrapper *wrapper = [[NSFileWrapper alloc] initWithURL:[NSURL fileURLWithPath:path] options:0 error:NULL];
 								checkTotalSize(&totalSize, path, fileManager);
 								if (wrapper)
 									wrappers[path] = wrapper;
@@ -971,7 +971,7 @@ void rfbReceiveRichClipboardRequest(rfbClientPtr cl) {
 						NSString *path = theUrl.path;
 						if ([fileManager fileExistsAtPath:path]) {
 							checkTotalSize(&totalSize, path, fileManager);
-							theWrapper = [[NSFileWrapper alloc] initWithPath:path];
+							theWrapper = [[NSFileWrapper alloc] initWithURL:theUrl options:0 error:NULL];
 						}
 					}
 				}

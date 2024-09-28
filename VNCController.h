@@ -10,7 +10,7 @@
 
 #import "NSAuthorization.h"
 
-@interface VNCController : NSObject <NSMenuItemValidation> {
+@interface VNCController : NSObject <NSMenuItemValidation, NSControlTextEditingDelegate> {
     IBOutlet NSMenuItem *startServerMenuItem;
     IBOutlet NSMenuItem *stopServerMenuItem;
 

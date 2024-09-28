@@ -1191,7 +1191,7 @@ Bool rfbSendScreenUpdateEncoding(rfbClientPtr cl) {
     return rfbSendUpdateBuf(cl);
 }
 
-/*
+/*!
  * Send a given rectangle in raw encoding (rfbEncodingRaw).
  */
 
@@ -1254,7 +1254,7 @@ Bool rfbSendRectEncodingRaw(rfbClientPtr cl, int x, int y, int w, int h) {
 
 
 
-/*
+/**
  * Send an empty rectangle with encoding field set to value of
  * rfbEncodingLastRect to notify client that this is the last
  * rectangle in framebuffer update ("LastRect" extension of RFB
@@ -1285,7 +1285,7 @@ Bool rfbSendLastRectMarker(rfbClientPtr cl) {
 }
 
 
-/*
+/**
  * Send the contents of updateBuf.  Returns 1 if successful, -1 if
  * not (errno should be set).
  */
@@ -1310,7 +1310,7 @@ Bool rfbSendUpdateBuf(rfbClientPtr cl) {
 }
 
 
-/*
+/**
  * rfbSendServerCutText sends a ServerCutText message to all the clients.
  */
 
@@ -1358,7 +1358,7 @@ void rfbSendServerCutText(rfbClientPtr cl, char *str, size_t len) {
  }
  */
 
-/* SERVER SCALING EXTENSIONS */
+/** SERVER SCALING EXTENSIONS */
 static void CopyScalingRect(rfbClientPtr cl,
                             uint32_t* x, uint32_t* y, uint32_t* w, uint32_t* h,
                             bool bDoScaling)

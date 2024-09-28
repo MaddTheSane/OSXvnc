@@ -245,7 +245,7 @@ static NSMutableArray *localIPAddresses(void) {
 // Since this can block for a long time in certain DNS situations we will put this in a separate thread
 - (void) dedicatedUpdateHostInfoThread {
 @autoreleasepool {
-    NS_DURING {
+    @try {
         // flushHostCache is no longer needed since OS X 10.6.
 #if 0
         [NSHost flushHostCache];
@@ -319,9 +319,9 @@ static NSMutableArray *localIPAddresses(void) {
         
         waitingForHostInfo = FALSE;
     }
-    NS_HANDLER
+    @catch (NSException *localException) {
     NSLog(@"Exception in updateHostInfo: %@", localException);
-    NS_ENDHANDLER
+    }
 }
 }
 
@@ -348,7 +348,6 @@ static NSMutableArray *localIPAddresses(void) {
 - (void) updateIPAddresses: (NSArray *) commonIPAddresses {
     [ipAddressesView renewRows:0 columns:2];
 
-    id ipAddressEnum = [commonIPAddresses objectEnumerator];
     int i = 0;
 
     for (id ipAddress in commonIPAddresses) {
@@ -1418,7 +1417,7 @@ static NSMutableArray *localIPAddresses(void) {
 }
 
 - (IBAction) openLog:(id) sender {
-    [[NSWorkspace sharedWorkspace] openFile:logFile];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:logFile]];
 }
 
 - (IBAction) openGPL:(id) sender {
@@ -1581,29 +1580,28 @@ static NSMutableArray *localIPAddresses(void) {
     myAuthorization = nil;
 }
 
-- (IBAction) installAsService: sender {
+- (IBAction) installAsService:(id)sender {
     // No password, so double check
     if (!passwordField.stringValue.length) {
-        NSBeginAlertSheet(NSLocalizedString(@"System Server", nil),
-                          NSLocalizedString(@"Cancel", nil),
-                          NSLocalizedString(@"Start Server", nil),
-                          nil, systemServerWindow, self, @selector(serviceSheetDidEnd:returnCode:contextInfo:),
-                          NULL, NULL, @"%@",
-                          NSLocalizedString(@"No password has been specified for the System Server.  The System Server will automatically launch every time your machine is restarted.  Are you sure that you want to install a System Server with no password", nil));
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = NSLocalizedString(@"System Server", nil);
+        alert.informativeText = NSLocalizedString(@"No password has been specified for the System Server.  The System Server will automatically launch every time your machine is restarted.  Are you sure that you want to install a System Server with no password", nil);
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Start Server", nil)];
+        [alert beginSheetModalForWindow:systemServerWindow completionHandler:^(NSModalResponse returnCode) {
+            if (returnCode == NSAlertFirstButtonReturn) {
+                return;
+            } else {
+                [self installAsService];
+            }
+        }];
     }
     else {
         [self installAsService];
     }
 }
 
-- (void) serviceSheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo {
-    if (returnCode==NSAlertDefaultReturn)
-        return;
-    else
-        [self installAsService];
-}
-
-- (IBAction) removeService: sender {
+- (IBAction) removeService:(id)sender {
     BOOL success = TRUE;
     NSString *startupPath = [[NSUserDefaults standardUserDefaults] stringForKey:@"startupItemLocation"];
     NSString *launchdPath = [[NSUserDefaults standardUserDefaults] stringForKey:@"launchdItemLocation"];
