@@ -50,9 +50,22 @@
 #include "ProxyConnect.h"
 #include "Echoware.h"
 /*#include "VPNProxyDllManager.h"*/
+#if __has_include(<CommonCrypto/CommonCrypto.h>)
 
+#include <CommonCrypto/CommonCrypto.h>
+#define MD5_CTX CC_MD5_CTX
+#define MD5Init CC_MD5_Init
+#define MD5Update CC_MD5_Update
+#define MD5Final CC_MD5_Final
+
+#define MD4_CTX CC_MD4_CTX
+#define MD4Init CC_MD4_Init
+#define MD4Update CC_MD4_Update
+#define MD4Final CC_MD4_Final
+#else
 #include "md5.h"
 #include "md4.h"
+#endif
 #include "ntlm.h"
 
 #include "sys/socket.h"

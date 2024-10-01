@@ -53,8 +53,6 @@
 		AB87ED0009BB3B9A00AC7E96 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB744A3009968AF70046F588 /* stdafx.cpp */; };
 		AB87F13B09C1F95100AC7E96 /* RSAKeys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB744A7409968B340046F588 /* RSAKeys.cpp */; };
 		AB87F1A209C1FE2700AC7E96 /* aes_core.c in Sources */ = {isa = PBXBuildFile; fileRef = AB744A0409968AF60046F588 /* aes_core.c */; };
-		AB87F1A409C1FE3300AC7E96 /* md4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB744A0C09968AF60046F588 /* md4.cpp */; };
-		AB87F1A509C1FE3300AC7E96 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB744A0E09968AF60046F588 /* md5.cpp */; };
 		AB87F1A809C1FE3B00AC7E96 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB744A1609968AF60046F588 /* stdafx.cpp */; };
 		AB87F1AB09C1FE5E00AC7E96 /* Gsimply.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB744A1D09968AF60046F588 /* Gsimply.cpp */; };
 		AB87F2D009C211AB00AC7E96 /* ProxyConnect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB744A1209968AF60046F588 /* ProxyConnect.cpp */; };
@@ -499,8 +497,6 @@
 				AB87ED0009BB3B9A00AC7E96 /* stdafx.cpp in Sources */,
 				AB87F13B09C1F95100AC7E96 /* RSAKeys.cpp in Sources */,
 				AB87F1A209C1FE2700AC7E96 /* aes_core.c in Sources */,
-				AB87F1A409C1FE3300AC7E96 /* md4.cpp in Sources */,
-				AB87F1A509C1FE3300AC7E96 /* md5.cpp in Sources */,
 				AB87F1A809C1FE3B00AC7E96 /* stdafx.cpp in Sources */,
 				AB87F1AB09C1FE5E00AC7E96 /* Gsimply.cpp in Sources */,
 				AB87F2D009C211AB00AC7E96 /* ProxyConnect.cpp in Sources */,
