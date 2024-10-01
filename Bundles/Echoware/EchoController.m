@@ -599,8 +599,8 @@ static EchoController *sharedEchoController;
 		username = [username stringByAppendingString: @":vnc"];
 		NSString *password = [passwordField_edit stringValue];
 
-		int len_username = [username lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-		int len_password = [password lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+		NSInteger len_username = [username lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+		NSInteger len_password = [password lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
 		char pUsername[len_username + 1];
 		char pPassword[len_password + 1];
 		strncpy(pUsername, [username UTF8String], len_username);
@@ -721,13 +721,6 @@ static EchoController *sharedEchoController;
 	}
 	return res;
 }
-@end
-
-@interface EchoController (TableDataSource) <NSTableViewDataSource>
-
-@end
-
-@implementation EchoController (TableDataSource)
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {

@@ -6,7 +6,7 @@ class CServerListSynchronize;
 class CCritSection;
 class CMyDllProxyInfo;
 
-@interface EchoController : NSObject <NSWindowDelegate>
+@interface EchoController : NSObject <NSWindowDelegate, NSTableViewDataSource>
 {
 	NSTabView *mainTabView;
 
