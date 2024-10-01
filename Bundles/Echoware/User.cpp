@@ -32,8 +32,8 @@ CUser::CUser(NSString *username, NSString *password)
 
 CUser::~CUser()
 {
-	[m_name release];
-	[m_realName release];
+	m_name = nil;
+	m_realName = nil;
 	if (m_groups != NULL) free(m_groups);
 	m_groups = NULL;
 }
@@ -73,12 +73,12 @@ void CUser::initWithUsername(NSString* username, CDirService* dirService)
 																  NULL,
 																  NULL,
 																  NULL);
-		m_name     = [[[userInfo objectForKey:[NSString stringWithCString:kDSNAttrRecordName encoding:NSUTF8StringEncoding]] objectAtIndex:0] retain];
-		m_realName = [[[userInfo objectForKey:[NSString stringWithCString:kDS1AttrDistinguishedName encoding:NSUTF8StringEncoding]] objectAtIndex:0] retain];
-		m_uid      = [[[userInfo objectForKey:[NSString stringWithCString:kDS1AttrUniqueID encoding:NSUTF8StringEncoding]] objectAtIndex:0] intValue];
-		m_gid      = [[[userInfo objectForKey:[NSString stringWithCString:kDS1AttrPrimaryGroupID encoding:NSUTF8StringEncoding]] objectAtIndex:0] intValue];
+		m_name     = [[userInfo objectForKey:@kDSNAttrRecordName] objectAtIndex:0];
+		m_realName = [[userInfo objectForKey:@kDS1AttrDistinguishedName] objectAtIndex:0];
+		m_uid      = [[[userInfo objectForKey:@kDS1AttrUniqueID] objectAtIndex:0] intValue];
+		m_gid      = [[[userInfo objectForKey:@kDS1AttrPrimaryGroupID] objectAtIndex:0] intValue];
 
-		NSArray* adminMembers = [adminInfo objectForKey:[NSString stringWithCString:kDSNAttrGroupMembership encoding:NSUTF8StringEncoding]];
+		NSArray* adminMembers = [adminInfo objectForKey:@kDSNAttrGroupMembership];
 		m_admin = [adminMembers containsObject:m_realName] || [adminMembers containsObject:m_name];
 
 		if (m_name != nil)
@@ -114,7 +114,7 @@ NSString* CUser::CurrentConsoleUsername()
 	CFStringRef userName = CopyCurrentConsoleUsername();
 	if (userName != NULL)
 	{
-		res = (NSString*)userName;
+		res = (NSString*)CFBridgingRelease(userName);
 	}
 	return res;
 }

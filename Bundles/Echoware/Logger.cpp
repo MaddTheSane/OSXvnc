@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include <time.h>
-#include "logger.h"
+#include "Logger.h"
 
 //if defined _CONSOLE_ then the logging data are writted to a console, not to a file
 //#define _CONSOLE_

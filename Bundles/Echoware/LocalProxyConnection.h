@@ -5,7 +5,7 @@
 #pragma once
 #endif
 
-#include "proxyconnection.h"
+#include "ProxyConnection.h"
 
 class CLocalProxyConnection : public CProxyConnection
 {

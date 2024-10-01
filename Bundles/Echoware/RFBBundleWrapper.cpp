@@ -28,7 +28,7 @@
 	char byte = 0;
 	NSMutableData *aDat = [[self dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
 	[aDat appendBytes:&byte length:sizeof(byte)];
-	return [[[aDat autorelease] copy] autorelease];
+	return [aDat copy];
 }
 
 @end
@@ -376,7 +376,6 @@ void CRFBBundleWrapper::loadProxyFields(NSUserDefaults* suDefaults)
 	// Load to EchoWare
 	if ([proxyAddrString length] && [proxyPortString intValue])
 	{
-		[proxyStringsDictionary release];
 		proxyStringsDictionary = [[NSMutableDictionary alloc] init];
 
 		[proxyStringsDictionary setObject:[proxyAddrString nullTerminatedData] forKey:@"EchoProxyAddr"];
@@ -407,16 +406,16 @@ void CRFBBundleWrapper::loadServerList(NSUserDefaults* suDefaults)
 	NSEnumerator *echoEnum = [[suDefaults objectForKey:@"EchoServers"] objectEnumerator];
 	NSMutableDictionary *echoDict = nil;
 
-	while ((echoDict = [[[echoEnum nextObject] mutableCopy] autorelease]))
+	while ((echoDict = [[echoEnum nextObject] mutableCopy]))
 	{
 		IDllProxyInfo* proxyInfo = (IDllProxyInfo*)CreateProxyInfoClassObject();
 
-		[echoDict setObject:[[[echoDict objectForKey:@"IPAddress"] nullTerminatedData] retain] forKey:@"IPAddress_cStringData"];
+		[echoDict setObject:[[echoDict objectForKey:@"IPAddress"] nullTerminatedData] forKey:@"IPAddress_cStringData"];
 		proxyInfo->SetIP((const char *)[[echoDict objectForKey:@"IPAddress_cStringData"] bytes]);
 
 		if ([echoDict objectForKey:@"Port"])
 		{
-			[echoDict setObject:[[[echoDict objectForKey:@"Port"] nullTerminatedData] retain] forKey:@"Port_cStringData"];
+			[echoDict setObject:[[echoDict objectForKey:@"Port"] nullTerminatedData] forKey:@"Port_cStringData"];
 			proxyInfo->SetPort((const char *)[[echoDict objectForKey:@"Port_cStringData"] bytes]);
 		}
 		else
@@ -424,13 +423,13 @@ void CRFBBundleWrapper::loadServerList(NSUserDefaults* suDefaults)
 
 		if ([echoDict objectForKey:@"User"])
 		{
-			[echoDict setObject:[[[echoDict objectForKey:@"User"] nullTerminatedData] retain] forKey:@"User_cStringData"];
+			[echoDict setObject:[[echoDict objectForKey:@"User"] nullTerminatedData] forKey:@"User_cStringData"];
 			proxyInfo->SetMyID((char *)[[echoDict objectForKey:@"User_cStringData"] bytes]);
 		}
 
 		if ([echoDict objectForKey:@"Pass"])
 		{
-			[echoDict setObject:[[[echoDict objectForKey:@"Pass"] nullTerminatedData] retain] forKey:@"Pass_cStringData"];
+			[echoDict setObject:[[echoDict objectForKey:@"Pass"] nullTerminatedData] forKey:@"Pass_cStringData"];
 			proxyInfo->SetPassword((const char *)[[echoDict objectForKey:@"Pass_cStringData"] bytes]);
 		}
 
@@ -486,7 +485,6 @@ void CRFBBundleWrapper::loadLoggingOptions(NSUserDefaults* suDefaults)
 		logFile = [logFile stringByStandardizingPath];
 		if ([logFile length] && canWriteToFile(logFile))
 		{
-			[logFile retain];
 			break;
 		}
 	}
@@ -518,7 +516,6 @@ bool CRFBBundleWrapper::UserDefaultsChecking()
 		return result;
 
 	CUser user(username);
-	[username release];
 
 	uid_t old_uid = geteuid();
 	[NSUserDefaults resetStandardUserDefaults];

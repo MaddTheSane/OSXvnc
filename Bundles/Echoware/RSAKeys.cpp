@@ -4,7 +4,7 @@
 #include "RSA/HNumber.h"
 #include "RSA/Hnfunct.h"
 #include "blowfish.h"
-#include "rsa/operator.h"
+#include "RSA/Operator.h"
 
 #define DFLT_GENERATOR	    "2"
 #define DFLT_MODULUS "7212610147295474909544523785043492409969382148186765460082500085393519556525921455588705423020751421"
@@ -50,7 +50,7 @@ void CRSAKeys::GenerateRandomPrivateKey(char* pKey)
 		randomNo = rand() * rand();
 		temp[index] = randomNo;
 	}
-	sprintf(pKey, "%08lx%08lx%08lx%08lx%08lx", temp[0], temp[1], temp[2], temp[3], temp[4]);
+	snprintf(pKey, RSA_PRIVATE_KEY, "%08lx%08lx%08lx%08lx%08lx", temp[0], temp[1], temp[2], temp[3], temp[4]);
 	pKey[RSA_PRIVATE_KEY] ='\0';
 }
 

@@ -6,7 +6,7 @@ class CServerListSynchronize;
 class CCritSection;
 class CMyDllProxyInfo;
 
-@interface EchoController : NSObject
+@interface EchoController : NSObject <NSWindowDelegate>
 {
 	NSTabView *mainTabView;
 
@@ -60,9 +60,9 @@ class CMyDllProxyInfo;
 - (void) loadProxyFields;
 
 - (void) reloadData;
-- (void) selectRow: (int)row;
-- (void) removeRow: (int)row removeProxy: (bool)rmProxy removeServer: (bool)rmServer;
-- (CMyDllProxyInfo*) getDllProxyInfo: (int)row;
+- (void) selectRow: (NSInteger)row;
+- (void) removeRow: (NSInteger)row removeProxy: (bool)rmProxy removeServer: (bool)rmServer;
+- (CMyDllProxyInfo*) getDllProxyInfo: (NSInteger)row;
 - (void) addInfo: (CMyDllProxyInfo*)info;
 - (void) saveData;
 

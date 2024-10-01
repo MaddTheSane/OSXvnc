@@ -11,7 +11,7 @@
 #include "EchoToOSX.h"
 #include "ProxiesManager.h"
 #include "MyDllProxyInfo.h"
-#include "globals.h"
+#include "Globals.h"
 
 CServerListSynchronize::CServerListSynchronize()
 {
@@ -23,7 +23,7 @@ CServerListSynchronize::~CServerListSynchronize()
 {
 	if (echo)
 	{
-		int count = [echo->echoInfoProxys count];
+		NSInteger count = [echo->echoInfoProxys count];
 		while (count > 0)
 		{
 			count--;
@@ -134,7 +134,7 @@ unsigned long CServerListSynchronize::ManageThreadProc_Connect(void* lpParameter
 
 		if (sls->echo)
 		{
-			int count = [sls->echo->echoInfoProxys count];
+			NSInteger count = [sls->echo->echoInfoProxys count];
 			int ind = 0;
 			while (ind < count)
 			{
@@ -153,7 +153,7 @@ unsigned long CServerListSynchronize::ManageThreadProc_Connect(void* lpParameter
 					{
 						NSLog(@"Connecting...");
 
-						int ind = [sls->echo->echoTableView selectedRow];
+						NSInteger ind = [sls->echo->echoTableView selectedRow];
 						[sls->echo reloadData];
 						[sls->echo selectRow: ind];
 
@@ -199,7 +199,7 @@ unsigned long CServerListSynchronize::ManageThreadProc_Connect(void* lpParameter
 					{
 						NSLog(@"Reconnecting...");
 
-						int ind = [sls->echo->echoTableView selectedRow];
+						NSInteger ind = [sls->echo->echoTableView selectedRow];
 						[sls->echo reloadData];
 						[sls->echo selectRow: ind];
 
@@ -280,7 +280,7 @@ unsigned long CServerListSynchronize::ManageThreadProc_Remove(void* lpParameter)
 
 		if (sls->echo)
 		{
-			int count = [sls->echo->echoInfoProxysToRemove count];
+			NSInteger count = [sls->echo->echoInfoProxysToRemove count];
 			while (count > 0)
 			{
 				count--;
@@ -343,7 +343,7 @@ unsigned long CServerListSynchronize::ManageThreadProc_Update(void* lpParameter)
 		bool statusChanged = false;
 		if (sls->echo)
 		{
-			int count = [sls->echo->echoInfoProxys count];
+			NSInteger count = [sls->echo->echoInfoProxys count];
 			while (count > 0)
 			{
 				count--;
@@ -367,7 +367,7 @@ unsigned long CServerListSynchronize::ManageThreadProc_Update(void* lpParameter)
 		if (statusChanged)
 		{
 			NSLog(@"Status was changed");
-			int index = [sls->echo->echoTableView selectedRow];
+			NSInteger index = [sls->echo->echoTableView selectedRow];
 			[sls->echo reloadData];
 			[sls->echo selectRow: index];
 		}

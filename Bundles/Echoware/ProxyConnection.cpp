@@ -1,6 +1,6 @@
 #include "StdAfx.h"
-#include "proxyconnection.h"
-#include "dllproxyinfo.h"
+#include "ProxyConnection.h"
+#include "DllProxyInfo.h"
 #include "ACConnection.h"
 #include "DataChannels.h"
 #include "DataChannel.h"

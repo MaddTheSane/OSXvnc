@@ -34,7 +34,7 @@ static EchoController *sharedEchoController;
 	char byte = 0;
 	NSMutableData *aDat = [[self dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
 	[aDat appendBytes:&byte length:sizeof(byte)];
-	return [[[aDat autorelease] copy] autorelease];
+	return [aDat copy];
 }
 
 @end
@@ -55,7 +55,7 @@ static EchoController *sharedEchoController;
 
 + (void) rfbStartup: theServer
 {
-	CRFBBundleWrapper::GetInstance()->rfb_port = ((rfbserver*)theServer)->rfbPort;
+	CRFBBundleWrapper::GetInstance()->rfb_port = ((__bridge rfbserver*)theServer)->rfbPort;
 	CRFBBundleWrapper::GetInstance()->is_rfb = true;
 	CRFBBundleWrapper::GetInstance()->UserDefaultsChecking();
 	CRFBBundleWrapper::GetInstance()->startRunLoop();
@@ -82,7 +82,7 @@ static EchoController *sharedEchoController;
 
 @implementation EchoController
 
-- init
+- (instancetype)init
 {
 	self = [super init];
 
@@ -102,6 +102,7 @@ static EchoController *sharedEchoController;
 		m_ServerList->Start(self);
 		NSLog(@"Starting Threads done...");
 	}
+	return self;
 }
 
 - (void)windowWillClose: (NSNotification*)aNotification;
@@ -125,18 +126,18 @@ static EchoController *sharedEchoController;
 	[echoInfoProxys removeAllObjects];
 	[echoInfoProxysToRemove removeAllObjects];
 
-	[echoInfoProxys release];
-	[echoInfoProxysToRemove release];
+	echoInfoProxys = nil;
+	echoInfoProxysToRemove = nil;
 
 	[echoServers removeAllObjects];
-	[echoServers release];
+	echoServers = nil;
 
 	m_nEditIndex = -1;
 }
 
 - (void) loadGUI: sender
 {
-	NSEnumerator *viewEnum = [[[[[NSApp delegate] window] contentView] subviews] objectEnumerator];
+	NSEnumerator *viewEnum = [[[[(id)[NSApp delegate] window] contentView] subviews] objectEnumerator];
 
 	while (mainTabView = [viewEnum nextObject])
 		if ([mainTabView isKindOfClass:[NSTabView class]])
@@ -195,7 +196,6 @@ static EchoController *sharedEchoController;
 			logFile = [logFile stringByStandardizingPath];
 			if ([logFile length] && [self canWriteToFile:logFile])
 			{
-				[logFile retain];
 				break;
 			}
 		}
@@ -275,7 +275,6 @@ static EchoController *sharedEchoController;
 	// Load to EchoWare
 	if ([proxyAddrString length] && [proxyPortString intValue])
 	{
-		[proxyStringsDictionary release];
 		proxyStringsDictionary = [[NSMutableDictionary alloc] init];
 
 		[proxyStringsDictionary setObject:[proxyAddrString nullTerminatedData] forKey:@"EchoProxyAddr"];
@@ -301,12 +300,12 @@ static EchoController *sharedEchoController;
 {
 	IDllProxyInfo* proxyInfo = (IDllProxyInfo*)CreateProxyInfoClassObject();
 
-	[echoDict setObject:[[[echoDict objectForKey:@"IPAddress"] nullTerminatedData] retain] forKey:@"IPAddress_cStringData"];
+	[echoDict setObject:[[echoDict objectForKey:@"IPAddress"] nullTerminatedData] forKey:@"IPAddress_cStringData"];
 	proxyInfo->SetIP((const char *)[[echoDict objectForKey:@"IPAddress_cStringData"] bytes]);
 
 	if ([echoDict objectForKey:@"Port"])
 	{
-		[echoDict setObject:[[[echoDict objectForKey:@"Port"] nullTerminatedData] retain] forKey:@"Port_cStringData"];
+		[echoDict setObject:[[echoDict objectForKey:@"Port"] nullTerminatedData] forKey:@"Port_cStringData"];
 		proxyInfo->SetPort((const char *)[[echoDict objectForKey:@"Port_cStringData"] bytes]);
 	}
 	else
@@ -314,12 +313,12 @@ static EchoController *sharedEchoController;
 
 	if ([echoDict objectForKey:@"User"])
 	{
-		[echoDict setObject:[[[echoDict objectForKey:@"User"] nullTerminatedData] retain] forKey:@"User_cStringData"];
+		[echoDict setObject:[[echoDict objectForKey:@"User"] nullTerminatedData] forKey:@"User_cStringData"];
 		proxyInfo->SetMyID((char *)[[echoDict objectForKey:@"User_cStringData"] bytes]);
 	}
 	if ([echoDict objectForKey:@"Pass"])
 	{
-		[echoDict setObject:[[[echoDict objectForKey:@"Pass"] nullTerminatedData] retain] forKey:@"Pass_cStringData"];
+		[echoDict setObject:[[echoDict objectForKey:@"Pass"] nullTerminatedData] forKey:@"Pass_cStringData"];
 		proxyInfo->SetPassword((const char *)[[echoDict objectForKey:@"Pass_cStringData"] bytes]);
 	}
 
@@ -342,10 +341,9 @@ static EchoController *sharedEchoController;
 	NSEnumerator *echoEnum = [[uDef objectForKey:@"EchoServers"] objectEnumerator];
 	NSMutableDictionary *anEchoServer = nil;
 
-	[echoServers release];
 	echoServers = [[NSMutableArray alloc] init];
 
-	while ((anEchoServer = [[[echoEnum nextObject] mutableCopy] autorelease]))
+	while ((anEchoServer = [[echoEnum nextObject] mutableCopy]))
 	{
 		[echoServers addObject: anEchoServer];
 		[self createEchoServerFromDictionary: anEchoServer];
@@ -361,8 +359,7 @@ static EchoController *sharedEchoController;
 	NSString *computerName = NULL;
 	name = SCDynamicStoreCopyComputerName(NULL, NULL);
 	if (name != NULL)
-		computerName = [NSString stringWithString:(NSString*)name];
-	CFRelease(name);
+		computerName = [NSString stringWithString:CFBridgingRelease(name)];
 	return computerName;
 }
 
@@ -614,12 +611,12 @@ static EchoController *sharedEchoController;
 		echoProxyInfo->SetMyID(pUsername);
 		echoProxyInfo->SetPassword(pPassword);
 
-		NSMutableDictionary *echoDict = [[[echoServers objectAtIndex: m_nEditIndex] mutableCopy] autorelease];
+		NSMutableDictionary *echoDict = [[echoServers objectAtIndex: m_nEditIndex] mutableCopy];
 
 		[echoDict setObject: username forKey: @"User"];
 		[echoDict setObject: password forKey: @"Pass"];
-		[echoDict setObject: [[username nullTerminatedData] retain] forKey:@"User_cStringData"];
-		[echoDict setObject: [[password nullTerminatedData] retain] forKey:@"Pass_cStringData"];
+		[echoDict setObject: [username nullTerminatedData] forKey:@"User_cStringData"];
+		[echoDict setObject: [password nullTerminatedData] forKey:@"Pass_cStringData"];
 
 		[echoServers replaceObjectAtIndex: m_nEditIndex withObject: echoDict];
 
@@ -637,14 +634,14 @@ static EchoController *sharedEchoController;
 	m_critSection->Unlock();
 }
 
-- (void) selectRow: (int)row;
+- (void) selectRow: (NSInteger)row;
 {
 	m_critSection->Lock();
 	[echoTableView selectRow: row byExtendingSelection: false];
 	m_critSection->Unlock();
 }
 
-- (void) removeRow: (int)row removeProxy: (bool)rmProxy removeServer: (bool)rmServer;
+- (void) removeRow: (NSInteger)row removeProxy: (bool)rmProxy removeServer: (bool)rmServer;
 {
 	m_critSection->Lock();
 	if (rmProxy)
@@ -654,7 +651,7 @@ static EchoController *sharedEchoController;
 	m_critSection->Unlock();
 }
 
-- (CMyDllProxyInfo*) getDllProxyInfo: (int)row
+- (CMyDllProxyInfo*) getDllProxyInfo: (NSInteger)row
 {
 	CMyDllProxyInfo *res = NULL;
 	m_critSection->Lock();

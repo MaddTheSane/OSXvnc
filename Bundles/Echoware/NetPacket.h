@@ -43,7 +43,7 @@ struct NetPacketHeader
 {
 	char id[6];//EF packet and version identifier
 	char type; //type of packet (usually message)
-	long len;
+	int len;
 	NetPacketHeader()
 	{
 		strcpy( id, EF_NET_PACKET_ID );
@@ -56,11 +56,11 @@ class CProxyMsg
 public:
 	UINT	messageid;//message or event id
 	BYTE	usertype;//user type
-	long	datalength;//length of the data following this header
+	int		datalength;//length of the data following this header
 	//bytearray data;//the actual data
 	CProxyMsg() {}
 
-	CProxyMsg(DWORD messageid,long datalength=0,BYTE usertype=0)
+	CProxyMsg(DWORD messageid,int datalength=0,BYTE usertype=0)
 	{
 		this->messageid=messageid;
 		this->datalength=datalength;
@@ -70,7 +70,7 @@ public:
 	{
 		return sizeof(CProxyMsg);
 	}
-	int MakeMessage(NetPacketHeader* pheader,char*& destbuffer,void* datapart=NULL,long datalength=0)
+	int MakeMessage(NetPacketHeader* pheader,char*& destbuffer,void* datapart=NULL,int datalength=0)
 	{
 	/*
 		int s1 = sizeof(pheader->id);

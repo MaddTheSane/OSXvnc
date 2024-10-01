@@ -215,8 +215,8 @@ bool CDirService::authenticateUser(const char* username, const char* password)
 {
 	NSDictionary* userInfo = attributeDataForNodeOfType(kDSStdRecordTypeUsers, username, kDSNAttrRecordName, kDSNAttrMetaNodeLocation,
 														NULL, NULL,	NULL, NULL);
-	NSString* recordName   = [[userInfo objectForKey:[NSString stringWithCString:kDSNAttrRecordName encoding:NSUTF8StringEncoding]] objectAtIndex:0];
-	NSString* nodeLocation = [[userInfo objectForKey:[NSString stringWithCString:kDSNAttrMetaNodeLocation encoding:NSUTF8StringEncoding]] objectAtIndex:0];
+	NSString* recordName   = [[userInfo objectForKey:@kDSNAttrRecordName] objectAtIndex:0];
+	NSString* nodeLocation = [[userInfo objectForKey:@kDSNAttrMetaNodeLocation] objectAtIndex:0];
 	bool rc = false;
 	if ([recordName length] > 0 && [nodeLocation length] > 0)
 	{
