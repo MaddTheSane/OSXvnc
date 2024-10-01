@@ -216,7 +216,7 @@ static NSMutableArray *localIPAddresses(void) {
     if (clientList.count && !shutdownSignal) {
         NSAlert *alert = [[NSAlert alloc] init];
         alert.messageText = NSLocalizedString(@"Quit Vine Server", nil);
-        alert.informativeText = [NSString stringWithFormat:NSLocalizedString(@"Disconnect %lu clients and quit Vine Server?", nil), (unsigned long)clientList.count];
+        alert.informativeText = [NSString localizedStringWithFormat:NSLocalizedString(@"Disconnect %lu clients and quit Vine Server?", nil), (unsigned long)clientList.count];
         [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Quit", nil)];
         

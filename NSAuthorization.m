@@ -13,7 +13,7 @@
 @implementation NSAuthorization
 
 - (instancetype) init {
-    AuthorizationFlags myFlags = kAuthorizationFlagDefaults |
+    const AuthorizationFlags myFlags = kAuthorizationFlagDefaults |
     kAuthorizationFlagInteractionAllowed |
     kAuthorizationFlagPreAuthorize |
     kAuthorizationFlagExtendRights;

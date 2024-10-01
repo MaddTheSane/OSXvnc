@@ -40,7 +40,26 @@
       }
     },
     "Disconnect %lu clients and quit Vine Server?" : {
-
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Disconnect one client and quit Vine Server?"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Disconnect %lu clients and quit Vine Server?"
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "Error sending invitation: %s" : {
 
@@ -148,6 +167,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fehler: Kann das Startup-Item nicht entfernen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error: Unable to remove startup item"
           }
         },
         "fr" : {
