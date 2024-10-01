@@ -34,5 +34,3 @@ extern "C" bool CheckServer(char* ip, unsigned short port);
 
 
 #endif
-
-

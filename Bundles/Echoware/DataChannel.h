@@ -67,5 +67,4 @@ public:
 	bool m_bLocalDC;
 };
 
-
 #endif

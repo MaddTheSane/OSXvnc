@@ -2,7 +2,7 @@
 IgorSharov@rambler.ru
 */
 #include "stdafx.h"
-#include <Time.h>
+#include <time.h>
 #include "HNumber.h"
 #include "HNFunct.h"
 #include "Operator.h"
@@ -219,4 +219,3 @@ void MakePrime(int intS, HugeNumber &n)
    Misha_Time+=clock()-t1;
    //ProtocolF("GeneratePrime: Misha_Time=",(float)Misha_Time/CLK_TCK);
 };
-

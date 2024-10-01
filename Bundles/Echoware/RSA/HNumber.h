@@ -9,7 +9,7 @@ class HugeNumber
 	public:
 		word digit[MaxRazr];				// Znachenija razriadov
 		HugeNumber();
-		HugeNumber(char *);
+		HugeNumber(const char *);
 		HugeNumber(unsigned long);
 		HugeNumber(const HugeNumber&);
 		HugeNumber(HugeNumber&);

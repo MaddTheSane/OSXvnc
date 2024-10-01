@@ -452,4 +452,3 @@ int BytesInHN(HugeNumber &x)
    delete buf;
    return n;
 };
-

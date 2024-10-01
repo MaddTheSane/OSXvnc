@@ -5,7 +5,7 @@
 
 FILE *Prot=NULL;
 
-void Protocol(char *Msg)
+void Protocol(const char *Msg)
 {
    Prot=fopen("Prot.txt","at");
 	printf("%s\n",Msg);
@@ -43,7 +43,7 @@ void ProtocolF(const char *Msg, float a)
 	fclose(Prot);
 };
 
-void Protocol(char *Msg, HugeNumber &a)
+void Protocol(const char *Msg, HugeNumber &a)
 {
 	char Buf[222];
 
@@ -83,4 +83,3 @@ void PrintChar(unsigned char *ch, const long len)
 	for (i=0; i<len; i++) printf("%02X ",ch[i]);
 	printf("\n");
 };
-

@@ -66,7 +66,7 @@ class CMyDllProxyInfo;
 - (void) addInfo: (CMyDllProxyInfo*)info;
 - (void) saveData;
 
-- (NSString*) GetColumnValue: (int)row column: (NSString*)col;
+- (NSString*) GetColumnValue: (NSInteger)row column: (NSString*)col;
 
 - (void)windowWillClose: (NSNotification*)aNotification;
 

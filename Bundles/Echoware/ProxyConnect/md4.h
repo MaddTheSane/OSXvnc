@@ -47,6 +47,4 @@ void MD4Init(MD4_CTX* context);
 void MD4Update(MD4_CTX *context, unsigned char *input, unsigned int inputLen);
 void MD4Final(unsigned char digest[16], MD4_CTX *context);
 
-
-
 #endif

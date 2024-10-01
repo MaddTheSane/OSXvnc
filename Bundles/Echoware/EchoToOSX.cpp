@@ -8,6 +8,7 @@
  */
 
 #include <time.h>
+#include <sys/time.h>
 #include <pthread.h>
 #include <unistd.h>
 
@@ -79,5 +80,3 @@ bool ShutdownThread(void *shutdownThread, unsigned long waitTimeout, bool *shoul
 
 	return true;
 }
-
-

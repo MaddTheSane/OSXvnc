@@ -1,7 +1,7 @@
 #ifndef _HNFUNCT__H
 #define _HNFUNCT__H
 
-#include "Hnumber.h"
+#include "HNumber.h"
 
 extern HugeNumber zero,one,two,three;
 extern int BaseRazr();

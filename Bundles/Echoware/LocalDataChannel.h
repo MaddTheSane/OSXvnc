@@ -5,7 +5,7 @@
 #pragma once
 #endif
 
-#include "datachannelsocket.h"
+#include "DataChannelSocket.h"
 
 #define RECONNECT
 
@@ -34,4 +34,4 @@ protected:
 	bool m_bRFB;
 };
 
-#endif.30
+#endif

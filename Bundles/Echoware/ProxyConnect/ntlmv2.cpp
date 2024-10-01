@@ -47,7 +47,7 @@
 
 
 #include "stdafx.h"
-#include "proxyconnect.h"
+#include "ProxyConnect.h"
 #include "Echoware.h"
 /*#include "VPNProxyDllManager.h"*/
 
@@ -865,5 +865,3 @@ int DoNTLMv2
 
 	return -1;
 }
-
-

@@ -103,7 +103,7 @@ int CGlobals::GetFormattedID(char *szBuffer, int len, const char* szPartner)
 		return -1;
 	memset(szBuffer, 0, len);
 	char *pColon;
-	pColon = strrchr( szPartner, ':');
+	pColon = (char*)strrchr( szPartner, ':');
 	if (pColon == NULL)
 	{
 		strcpy(szBuffer + CLIENT_ID_OFFSET, szPartner);

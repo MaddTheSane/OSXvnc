@@ -8,10 +8,10 @@
  */
 
 #include "RFBBundleWrapper.h"
-#include "globals.h"
+#include "Globals.h"
 //#include "ProxiesManager.h"
 #import "Echoware.h"
-#import "InterfaceDLLProxyInfo.h"
+#import "InterfaceDllProxyInfo.h"
 #import "User.h"
 #include "EchoToOSX.h"
 
@@ -25,7 +25,10 @@
 
 - (NSData *) nullTerminatedData
 {
-	return [NSData dataWithBytes:[self lossyCString] length:[self cStringLength]+1];
+	char byte = 0;
+	NSMutableData *aDat = [[self dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+	[aDat appendBytes:&byte length:sizeof(byte)];
+	return [[[aDat autorelease] copy] autorelease];
 }
 
 @end
@@ -404,7 +407,7 @@ void CRFBBundleWrapper::loadServerList(NSUserDefaults* suDefaults)
 	NSEnumerator *echoEnum = [[suDefaults objectForKey:@"EchoServers"] objectEnumerator];
 	NSMutableDictionary *echoDict = nil;
 
-	while (echoDict = [[[echoEnum nextObject] mutableCopy] autorelease])
+	while ((echoDict = [[[echoEnum nextObject] mutableCopy] autorelease]))
 	{
 		IDllProxyInfo* proxyInfo = (IDllProxyInfo*)CreateProxyInfoClassObject();
 
@@ -487,13 +490,13 @@ void CRFBBundleWrapper::loadLoggingOptions(NSUserDefaults* suDefaults)
 			break;
 		}
 	}
-	NSLog(logFile);
+	NSLog(@"%@", logFile);
 	//
 
 	//converto from NSString to char*
-	int len_logFile = [logFile length];
+	int len_logFile = [logFile lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
 	char pLogFile[len_logFile + 1];
-	strncpy(pLogFile, [logFile cString], len_logFile);
+	strncpy(pLogFile, [logFile UTF8String], len_logFile);
 	pLogFile[len_logFile] = '\0';
 	//
 
@@ -506,7 +509,7 @@ bool CRFBBundleWrapper::UserDefaultsChecking()
 	BOOL result = FALSE;
 
 	NSArray *args = [[NSProcessInfo processInfo] arguments];
-	int argumentIndex = [args indexOfObject:@"-donotloadproxy"];
+	NSInteger argumentIndex = [args indexOfObject:@"-donotloadproxy"];
 	if (argumentIndex != NSNotFound)
 		return result;
 

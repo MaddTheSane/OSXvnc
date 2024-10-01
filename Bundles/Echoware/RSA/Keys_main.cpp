@@ -7,7 +7,7 @@
 //#include <conio.h>
 
 #include "HNumber.h"
-#include "GSimply.h"
+#include "Gsimply.h"
 
 extern void Keys(HugeNumber&,HugeNumber&,HugeNumber&);
 

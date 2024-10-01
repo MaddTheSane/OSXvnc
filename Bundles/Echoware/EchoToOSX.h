@@ -41,7 +41,7 @@
 
 #define CHAR        unsigned char
 #ifndef DWORD
-#define DWORD       long unsigned int
+#define DWORD       unsigned int
 #endif
 #define WORD  		unsigned short
 #define BYTE        unsigned char

@@ -1,18 +1,23 @@
 
 #import "EchoController.h"
 #import "Echoware.h"
-#import "InterfaceDLLProxyInfo.h"
+#import "InterfaceDllProxyInfo.h"
 #import "unistd.h"
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <SystemConfiguration/SystemConfiguration.h>
+#import <Cocoa/Cocoa.h>
 
 #include "User.h"
 #include "ProxiesManager.h"
 #include "MyDllProxyInfo.h"
-#include "globals.h"
+#include "Globals.h"
 #include "ServerListSynchronize.h"
 #include "CritSection.h"
+
+@interface NSObject (portNum)
+- (int)runningPortNum;
+@end
 
 static EchoController *sharedEchoController;
 
@@ -26,7 +31,10 @@ static EchoController *sharedEchoController;
 
 - (NSData *) nullTerminatedData
 {
-	return [NSData dataWithBytes:[self lossyCString] length:[self cStringLength]+1];
+	char byte = 0;
+	NSMutableData *aDat = [[self dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+	[aDat appendBytes:&byte length:sizeof(byte)];
+	return [[[aDat autorelease] copy] autorelease];
 }
 
 @end
@@ -161,7 +169,7 @@ static EchoController *sharedEchoController;
 
 - (void) setOffloadingPort: (id)sender
 {
-	SetPortForOffLoadingData((int) [[NSApp delegate] runningPortNum]);
+	SetPortForOffLoadingData((int) [(NSObject*)[NSApp delegate] runningPortNum]);
 }
 
 - (void) awakeFromNib
@@ -194,9 +202,9 @@ static EchoController *sharedEchoController;
 		//
 
 		//converto from NSString to char*
-		int len_logFile = [logFile length];
+		int len_logFile = [logFile lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
 		char pLogFile[len_logFile + 1];
-		strncpy(pLogFile, [logFile cString], len_logFile);
+		strncpy(pLogFile, [logFile UTF8String], len_logFile);
 		pLogFile[len_logFile] = '\0';
 		//
 
@@ -204,7 +212,7 @@ static EchoController *sharedEchoController;
 		[enableLoggingCheckbox setState: enableLog];
 		SetLoggingOptions(enableLog, pLogFile);
 
-		SetPortForOffLoadingData((int) [[NSApp delegate] runningPortNum]);
+		SetPortForOffLoadingData((int) [(NSObject*)[NSApp delegate] runningPortNum]);
 
 		[disableEchoCheckbox setState: [[NSUserDefaults standardUserDefaults] boolForKey:@"EchoDisabled"]];
 		[self disableEcho:self];
@@ -217,10 +225,10 @@ static EchoController *sharedEchoController;
 		[mainTabView addTabViewItem:newTab];
 		[newTab setView:echoServersView];
 
-		NSString *first = [NSString stringWithCString: GetDllVersion()];
+		NSString *first = [NSString stringWithUTF8String: GetDllVersion()];
 		NSString *second = [NSString stringWithFormat: @"EchoWare version %@", first];
 		[versionTextField setStringValue: second];
-		NSLog(second);
+		NSLog(@"%@", second);
 
 		[self loadServerList];
 		[self saveData];
@@ -337,7 +345,7 @@ static EchoController *sharedEchoController;
 	[echoServers release];
 	echoServers = [[NSMutableArray alloc] init];
 
-	while (anEchoServer = [[[echoEnum nextObject] mutableCopy] autorelease])
+	while ((anEchoServer = [[[echoEnum nextObject] mutableCopy] autorelease]))
 	{
 		[echoServers addObject: anEchoServer];
 		[self createEchoServerFromDictionary: anEchoServer];
@@ -421,7 +429,7 @@ static EchoController *sharedEchoController;
 
 - (IBAction)removeServer:(id)sender
 {
-	int index = [echoTableView selectedRow];
+	NSInteger index = [echoTableView selectedRow];
 	if (index >= 0)
 	{
 		CMyDllProxyInfo *pMyProxyInfo = [self getDllProxyInfo: index];
@@ -555,10 +563,10 @@ static EchoController *sharedEchoController;
 		char* p = strstr(sTmp, ":");
 		if (p != NULL)
 			*p = 0;
-		NSString *username = [NSString stringWithCString:sTmp];
-		delete sTmp;
-		NSString *password =[NSString stringWithCString: echoProxyInfo->GetPassword()];
-		NSString *server = [NSString stringWithCString: echoProxyInfo->GetIpPort()];
+		NSString *username = [NSString stringWithUTF8String:sTmp];
+		delete[] sTmp;
+		NSString *password =[NSString stringWithUTF8String: echoProxyInfo->GetPassword()];
+		NSString *server = [NSString stringWithUTF8String: echoProxyInfo->GetIpPort()];
 
 		[echoServerField_edit setStringValue: server];
 		[usernameField_edit setStringValue: username];
@@ -594,12 +602,12 @@ static EchoController *sharedEchoController;
 		username = [username stringByAppendingString: @":vnc"];
 		NSString *password = [passwordField_edit stringValue];
 
-		int len_username = [username length];
-		int len_password = [password length];
+		int len_username = [username lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+		int len_password = [password lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
 		char pUsername[len_username + 1];
 		char pPassword[len_password + 1];
-		strncpy(pUsername, [username cString], len_username);
-		strncpy(pPassword, [password cString], len_password);
+		strncpy(pUsername, [username UTF8String], len_username);
+		strncpy(pPassword, [password UTF8String], len_password);
 		pUsername[len_username] = 0;
 		pPassword[len_password] = 0;
 
@@ -674,7 +682,7 @@ static EchoController *sharedEchoController;
 	m_critSection->Unlock();
 }
 
-- (NSString*) GetColumnValue: (int)row column: (NSString*)col
+- (NSString*) GetColumnValue: (NSInteger)row column: (NSString*)col
 {
 	NSString* res = @"";
 	if (col && row >= 0)
@@ -699,7 +707,7 @@ static EchoController *sharedEchoController;
 		}
 		else if ([col isEqualToString:@"Status"])
 		{
-			res = [NSString stringWithCString: pMyProxyInfo->getStatusString()];
+			res = [NSString stringWithUTF8String: pMyProxyInfo->getStatusString()];
 		}
 		else if ([col isEqualToString:@"User"])
 		{
@@ -711,21 +719,25 @@ static EchoController *sharedEchoController;
 			if (p != NULL)
 				*p = 0;
 			res = [NSString stringWithCString:sTmp encoding:NSUTF8StringEncoding];
-			delete sTmp;
+			delete[] sTmp;
 		}
 	}
 	return res;
 }
 @end
 
+@interface EchoController (TableDataSource) <NSTableViewDataSource>
+
+@end
+
 @implementation EchoController (TableDataSource)
 
-- (int)numberOfRowsInTableView:(NSTableView *)tableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
 	return [echoServers count];
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)row
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
 	return [self GetColumnValue: row column: [tableColumn identifier]];
 }

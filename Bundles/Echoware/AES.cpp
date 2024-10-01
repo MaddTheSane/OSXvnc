@@ -1,5 +1,5 @@
-#include "StdAfx.h"
-#include "aes.h"
+#include "stdafx.h"
+#include "AES.h"
 
 CAES::CAES(void)
 {

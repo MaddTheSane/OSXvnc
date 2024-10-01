@@ -226,6 +226,3 @@ void CBlowFish::Decode (BYTE * pInput, BYTE * pOutput, DWORD lSize)
 		}
 	}
 }
-
-
-

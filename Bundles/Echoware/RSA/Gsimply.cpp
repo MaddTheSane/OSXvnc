@@ -271,7 +271,7 @@ void GeneratePrimeHugeNumber(HugeNumber &x)
    GeneratePrimeHugeNumber_Time+=clock()-t1;
 };
 
-int SaveKeys(char *FileName, HugeNumber &x, HugeNumber &y)
+int SaveKeys(const char *FileName, HugeNumber &x, HugeNumber &y)
 // function returns:
 // 1 - OK
 // 0 - failure
@@ -297,7 +297,7 @@ int SaveKeys(char *FileName, HugeNumber &x, HugeNumber &y)
    return 1;
 };
 
-int RestoreKey(char *FileName, HugeNumber &x, HugeNumber &y)
+int RestoreKey(const char *FileName, HugeNumber &x, HugeNumber &y)
 // function returns:
 // 1 - OK
 // 0 - failure
@@ -305,8 +305,8 @@ int RestoreKey(char *FileName, HugeNumber &x, HugeNumber &y)
 	int i,n;
 	FILE *f;
 	char buf[2222];
-   unsigned long testCheckSum=0;
-   unsigned long CheckSum=0;
+   unsigned int testCheckSum=0;
+   unsigned int CheckSum=0;
 
    f=fopen(FileName,"rt");
    if (f==NULL) return 0;
@@ -355,4 +355,3 @@ int RestoreKey(char *FileName, HugeNumber &x, HugeNumber &y)
    if (testCheckSum!=CheckSum) return 0;
    return 1;
 };
-

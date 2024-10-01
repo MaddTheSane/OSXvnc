@@ -2,7 +2,7 @@
 #include "StdAfx.h"
 #include "LocalDataChannel.h"
 #include "DataChannel.h"
-#include "globals.h"
+#include "Globals.h"
 
 CLocalDataChannel::CLocalDataChannel(CDataChannel* pDataChannel)
 :CDataChannelSocket(pDataChannel)
@@ -135,7 +135,7 @@ void CLocalDataChannel::OnReceive(char* buff, int len)
 		int nLength=len+16-len%16;
 		char temp[18];
 		memset(temp, 0, 18);
-		sprintf(temp, "%d:%d", len, nLength);
+		snprintf(temp, sizeof(temp), "%d:%d", len, nLength);
 		char *p=new char[nLength + 17];
 		memcpy(p, temp, 17);
 		AES_KEY aesKey;
@@ -152,4 +152,3 @@ bool CLocalDataChannel::StartSend()
 	int ret = Send();
 	return (ret == 0);
 }
-

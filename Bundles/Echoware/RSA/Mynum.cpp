@@ -99,4 +99,3 @@ void Mult(MyNum &c, MyNum &a, MyNum &b)
 	c.sign=a.sign*b.sign;
 	c.value=a.value*b.value;
 };
-

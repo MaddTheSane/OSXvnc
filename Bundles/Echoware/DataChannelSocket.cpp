@@ -1,5 +1,5 @@
-#include "StdAfx.h"
-#include "datachannelsocket.h"
+#include "stdafx.h"
+#include "DataChannelSocket.h"
 #include "DataChannel.h"
 
 CDataChannelSocket::CDataChannelSocket(CDataChannel* pDataChannel)

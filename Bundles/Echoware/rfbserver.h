@@ -41,4 +41,3 @@ typedef struct rfbserver {
     unsigned char *keyTableMods;
     int *pressModsForKeys;
 } rfbserver;
-

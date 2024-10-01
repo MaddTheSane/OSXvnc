@@ -309,6 +309,3 @@ unsigned int len
   for (i = 0; i < len; i++)
     ((char *)output)[i] = (char)value;
 }
-
-
-

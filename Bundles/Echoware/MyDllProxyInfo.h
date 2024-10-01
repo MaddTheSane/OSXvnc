@@ -8,7 +8,7 @@
  */
 
 #import "Echoware.h"
-#import "InterfaceDLLProxyInfo.h"∂
+#import "InterfaceDLLProxyInfo.h"
 
 class CMyDllProxyInfo
 {

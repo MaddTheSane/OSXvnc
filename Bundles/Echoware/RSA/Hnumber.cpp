@@ -14,7 +14,7 @@ IgorSharov@rambler.ru
 #include "MyTypes.h"
 
 static void Add1(HugeNumber &a, word m);
-static void Convert(char *b, HugeNumber &w);
+static void Convert(const char *b, HugeNumber &w);
 extern long int random(long int);
 
 HugeNumber::HugeNumber()
@@ -44,7 +44,7 @@ HugeNumber::HugeNumber(unsigned long num)
 	for (i=0; i<MaxRazr; i++) digit[i]=a.digit[i];
 };
 
-HugeNumber::HugeNumber(char *x)
+HugeNumber::HugeNumber(const char *x)
 {
    int i,n;
 
@@ -352,7 +352,7 @@ char* HugeNumber::ToHexStr(char *pointer, int size)
 	// razr == chisly simvolov, neobxodimix dlia predstavlenija odnogo razriada
 	if (size < this->Razr()*razr+1) return NULL; // Malo pamiati.
 
-   strcpy(buf,"%");
+	strcpy(buf,"%");
 	sprintf(format,"%s%02iX",buf,razr);
 	pointer[0]=0;
 	for (i=this->Razr()-1; i>=0; i--)
@@ -491,7 +491,7 @@ static void Add1(HugeNumber &a, word m)
 	a.digit[i]=word(k);
 };
 
-static void Convert(char *b_string, HugeNumber &w)
+static void Convert(const char *b_string, HugeNumber &w)
 // Prweobrazovanie iz stroki v chislo
 {
 	word n,m;

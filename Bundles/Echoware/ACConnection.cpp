@@ -1,5 +1,5 @@
-#include "StdAfx.h"
-#include "acconnection.h"
+#include "stdafx.h"
+#include "ACConnection.h"
 #include "ProxyConnection.h"
 #include "DllProxyInfo.h"
 #include "NetPacket.h"

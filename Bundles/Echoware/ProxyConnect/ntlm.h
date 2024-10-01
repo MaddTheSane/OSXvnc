@@ -52,8 +52,4 @@ int DoNTLMv2
 	unsigned char password[MAX_NAME_LEN]
 );
 
-
-
-
-
 #endif

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include <string>
-#include "proxyconnect.h"
+#include "ProxyConnect.h"
 
 #include "ntlm.h"
 
@@ -430,16 +430,16 @@ int CProxyConnect::ConnectViaHttpProxy(APISocket::CSocket sock, const char* dest
 		//
 		if (username && password)
 		{
-			sprintf(proxyAuth, "%s:%s", username, password);
+			snprintf(proxyAuth, sizeof(proxyAuth), "%s:%s", username, password);
 
 			memset(authstring, 0, MAX_LINE_SIZE);
 
 			base64((unsigned char*)authstring, (unsigned char*)proxyAuth, strlen(proxyAuth));
-			sprintf(buf, "CONNECT %s:%hu HTTP/1.0\r\nProxy-Authorization: Basic %s\r\nUser-Agent: echoWare\r\n\r\n", destIp, destPort, authstring);
+			snprintf(buf, sizeof(buf), "CONNECT %s:%hu HTTP/1.0\r\nProxy-Authorization: Basic %s\r\nUser-Agent: echoWare\r\n\r\n", destIp, destPort, authstring);
 		}
 		else
 		{
-			sprintf(buf, "CONNECT %s:%hu HTTP/1.0\r\nUser-Agent: echoWare\r\n\r\n", destIp, destPort);
+			snprintf(buf, sizeof(buf), "CONNECT %s:%hu HTTP/1.0\r\nUser-Agent: echoWare\r\n\r\n", destIp, destPort);
 		}
 
 		//
@@ -589,7 +589,7 @@ int CProxyConnect::TestSocks5Proxy(APISocket::CSocket sock, const char* destIp, 
 }
 
 
-#include "../globals.h"
+#include "../Globals.h"
 
 int CProxyConnect::TestHttpProxy(APISocket::CSocket sock, const char* destIp, unsigned int destPort,  char* proxyIp,
 			unsigned int proxyPort, char* username,  char* password)
@@ -615,16 +615,16 @@ int CProxyConnect::TestHttpProxy(APISocket::CSocket sock, const char* destIp, un
 	//
     if (username && password)
     {
-		sprintf(proxyAuth, "%s:%s", username, password);
+		snprintf(proxyAuth, sizeof(proxyAuth), "%s:%s", username, password);
 
 		memset(authstring, 0, MAX_LINE_SIZE);
 
 		base64((unsigned char*)authstring, (unsigned char*)proxyAuth, strlen(proxyAuth));
-		sprintf(buf, "CONNECT %s:%hu HTTP/1.0\r\nProxy-Authorization: Basic %s\r\nUser-Agent: echoWare\r\n\r\n", destIp, destPort, authstring);
+		snprintf(buf, sizeof(buf), "CONNECT %s:%hu HTTP/1.0\r\nProxy-Authorization: Basic %s\r\nUser-Agent: echoWare\r\n\r\n", destIp, destPort, authstring);
     }
     else
     {
-		sprintf(buf, "CONNECT %s:%hu HTTP/1.0\r\nUser-Agent: echoWare\r\n\r\n", destIp, destPort);
+		snprintf(buf, sizeof(buf), "CONNECT %s:%hu HTTP/1.0\r\nUser-Agent: echoWare\r\n\r\n", destIp, destPort);
     }
 
 	numWrite=strlen(buf);
@@ -634,7 +634,7 @@ int CProxyConnect::TestHttpProxy(APISocket::CSocket sock, const char* destIp, un
 		return NONE_TYPE;
     }
 
-	sprintf(logstr, "Sent to the server buf=%s", buf);
+	snprintf(logstr, sizeof(logstr), "Sent to the server buf=%s", buf);
 
 
 	//
@@ -938,7 +938,7 @@ int CProxyConnect::AnalyzeHttpProxy(APISocket::CSocket sock, const char* destIp,
 	int numRead, numWrite;
 	memset(buf, 0 , sizeof(buf));
 
-	sprintf(buf, "CONNECT %s:%hu HTTP/1.0\r\nUser-Agent: echoWare\r\n\r\n", destIp, destPort);
+	snprintf(buf, sizeof(buf), "CONNECT %s:%hu HTTP/1.0\r\nUser-Agent: echoWare\r\n\r\n", destIp, destPort);
 
 	numWrite=strlen(buf);
 
@@ -948,7 +948,7 @@ int CProxyConnect::AnalyzeHttpProxy(APISocket::CSocket sock, const char* destIp,
 		return -1;
     }
 
-	sprintf(logstr, "Dll : AnalyzeHttpProxy: Sent buf(Actual:%d/Sent:%d)=%s", strlen(buf), numWrite, buf);
+	snprintf(logstr, sizeof(logstr), "Dll : AnalyzeHttpProxy: Sent buf(Actual:%d/Sent:%d)=%s", strlen(buf), numWrite, buf);
 
 
 	//

@@ -63,7 +63,7 @@ NSDictionary* CDirService::attributeDataForNodeOfType(const char* type,
 	tDataListPtr	pRecTypeList	= NULL;
 	tDataListPtr	pRecNameList	= NULL;
 	tDataBufferPtr	pSearchBuffer	= NULL;
-	unsigned long	ulRecCount		= 0;	// do not limit the number of records we are expecting
+	UInt32			ulRecCount		= 0;	// do not limit the number of records we are expecting
 	unsigned long	ulBufferSize	= 2048;	// start with a 2k buffer for any data
 
 	// we will want the actual record name and the name of the node where the user resides
@@ -257,7 +257,7 @@ tDirStatus CDirService::OpenSearchNode(tDirReference inDSRef, tDirNodeReference 
 	tDataListPtr		pSearchNode		= NULL;
 	tDirStatus			dsStatus;
 	tContextData		dsContext		= NULL;
-	unsigned long		ulReturnCount	= 0;
+	UInt32				ulReturnCount	= 0;
 
 	// verify none of the parameters are NULL, if so return an eDSNullParameter
 	if( outNodeRef == NULL || inDSRef == 0 ) {

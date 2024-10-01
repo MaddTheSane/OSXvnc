@@ -98,5 +98,3 @@ int Decode(unsigned char *msg, int &msgLen, HugeNumber &FirstHalf, HugeNumber &S
    if (testCheckSum!=CheckSum%base) return 0;
    return 1;
 };
-
-

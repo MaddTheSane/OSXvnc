@@ -1,5 +1,5 @@
-#include "StdAfx.h"
-#include "critsection.h"
+#include "stdafx.h"
+#include "CritSection.h"
 #include "errno.h"
 
 CCritSection::CCritSection(void)
