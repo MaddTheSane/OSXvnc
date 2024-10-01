@@ -17,26 +17,26 @@
 
 @end
 
-@protocol RFBBundleProtocol
+@protocol RFBBundleProtocol <NSObject>
 
+/*! Print stuff to stderr if you want to add usage information */
 + (void) rfbUsage;
-    /* Print stuff to stderr if you want to add usage information */
 
+/*! This method is called during startup and should display with NSLog some information about the Bundle 
+ * You can use NSProcessInfo to get access to the startup arguments */
 + (void) rfbStartup: (rfbserver *) theServer;
-    /* This method is called during startup and should display with NSLog some information about the Bundle */
-    /* You can use NSProcessInfo to get access to the startup arguments */
 
+/*! This method is called after all of the core services are started -- immediately before listening for connects */
 + (void) rfbRunning;
-	/* This method is called after all of the core services are started -- immediately before listening for connects */
 
+/*! This method is called during each check the VNC system does for screen updates, etc. */
 + (void) rfbPoll;
-    /* This method is called during each check the VNC system does for screen updates, etc. */
 
+/*! This method is called immediately as each event is received */
 + (void) rfbReceivedClientMessage;
-    /* This method is called immediately as each event is received */
 
+/*! This method is called when we go to shutdown the server */
 + (void) rfbShutdown;
-    /* This method is called when we go to shutdown the server */
 
 @end
 
