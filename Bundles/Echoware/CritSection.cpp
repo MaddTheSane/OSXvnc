@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CritSection.h"
-#include "errno.h"
+#include <errno.h>
 
 CCritSection::CCritSection(void)
 {

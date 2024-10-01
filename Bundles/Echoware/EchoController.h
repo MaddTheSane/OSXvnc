@@ -48,7 +48,7 @@ class CMyDllProxyInfo;
 	@public NSMutableArray *echoInfoProxys;
 	@public NSMutableArray *echoInfoProxysToRemove;
 
-	int m_nEditIndex;
+	NSInteger m_nEditIndex;
 	CServerListSynchronize *m_ServerList;
 	CCritSection *m_critSection;
 }

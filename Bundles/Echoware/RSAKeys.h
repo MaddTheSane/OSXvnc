@@ -5,7 +5,7 @@
 #pragma once
 #endif
 
-#include "rsa/HNumber.h"
+#include "RSA/HNumber.h"
 
 #define RSA_PUBLIC_KEY	80
 #define RSA_PRIVATE_KEY	40

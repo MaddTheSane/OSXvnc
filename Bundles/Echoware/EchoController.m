@@ -2,7 +2,7 @@
 #import "EchoController.h"
 #import "Echoware.h"
 #import "InterfaceDllProxyInfo.h"
-#import "unistd.h"
+#import <unistd.h>
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <SystemConfiguration/SystemConfiguration.h>
@@ -553,7 +553,7 @@ static EchoController *sharedEchoController;
 		 || pMyProxyInfo->getStatus() == CMyDllProxyInfo::Reconnecting)
 		 	return;
 
-		int nLen = strlen(echoProxyInfo->GetMyID());
+		NSInteger nLen = strlen(echoProxyInfo->GetMyID());
 		char* sTmp = new char[nLen + 1];
 		memset(sTmp, 0, nLen + 1);
 		memcpy(sTmp, echoProxyInfo->GetMyID(), nLen);
@@ -637,7 +637,7 @@ static EchoController *sharedEchoController;
 - (void) selectRow: (NSInteger)row;
 {
 	m_critSection->Lock();
-	[echoTableView selectRow: row byExtendingSelection: false];
+	[echoTableView selectRowIndexes: [NSIndexSet indexSetWithIndex:row] byExtendingSelection: false];
 	m_critSection->Unlock();
 }
 
@@ -708,7 +708,7 @@ static EchoController *sharedEchoController;
 		}
 		else if ([col isEqualToString:@"User"])
 		{
-			int nLen = strlen(proxyInfo->GetMyID());
+			NSInteger nLen = strlen(proxyInfo->GetMyID());
 			char* sTmp = new char[nLen + 1];
 			memset(sTmp, 0, nLen + 1);
 			memcpy(sTmp, proxyInfo->GetMyID(), nLen);

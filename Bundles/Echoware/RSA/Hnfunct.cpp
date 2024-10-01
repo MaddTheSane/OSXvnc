@@ -9,8 +9,8 @@ IgorSharov@rambler.ru
 #include "Hnumber.h"
 #include "operator.h"
 #include "commonf.h"
-#include "string.h"
-#include "stdio.h"
+#include <string.h>
+#include <stdio.h>
 #include "MyPrint.h"
 
 #define buf_s 2222

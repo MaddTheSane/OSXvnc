@@ -9,7 +9,7 @@ class CDataChannel;
 class CDllProxyInfo;
 #include "CritSection.h"
 #include <list>
-#include "pthread.h"
+#include <pthread.h>
 
 //data channels manager
 //manages all data channels for a proxy connection

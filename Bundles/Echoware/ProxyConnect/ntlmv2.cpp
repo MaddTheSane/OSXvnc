@@ -41,24 +41,23 @@
 //#include "afx.h"
 #include "iostream"
 //#include "windows.h"
-#include "stdio.h"
-#include "string.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 
 #include "stdafx.h"
 #include "ProxyConnect.h"
 #include "Echoware.h"
 /*#include "VPNProxyDllManager.h"*/
-#if __has_include(<CommonCrypto/CommonCrypto.h>)
-
-#include <CommonCrypto/CommonCrypto.h>
-#define MD5_CTX CC_MD5_CTX
+#if __has_include(<CommonCrypto/CommonDigest.h>)
+#include <CommonCrypto/CommonDigest.h>
+typedef CC_MD5_CTX MD5_CTX;
 #define MD5Init CC_MD5_Init
 #define MD5Update CC_MD5_Update
 #define MD5Final CC_MD5_Final
 
-#define MD4_CTX CC_MD4_CTX
+typedef CC_MD4_CTX MD4_CTX;
 #define MD4Init CC_MD4_Init
 #define MD4Update CC_MD4_Update
 #define MD4Final CC_MD4_Final
@@ -68,7 +67,7 @@
 #endif
 #include "ntlm.h"
 
-#include "sys/socket.h"
+#include <sys/socket.h>
 #include "EchoToOSX.h"
 
 #define printf

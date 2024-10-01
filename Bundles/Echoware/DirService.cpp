@@ -313,7 +313,7 @@ tDirStatus CDirService::DoPasswordAuth(tDirReference inDSRef, tDirNodeReference 
 	tDataNodePtr	pAuthMethod		= NULL;
 	tDataBufferPtr	pAuthStepData	= NULL;
 	tDataBufferPtr	pAuthRespData	= NULL;
-	tContextData	pContextData	= NULL;
+	tContextData	pContextData	= 0;
 
 	// if any of our parameters are NULL, return a NULL parameter
 	// if a password is not set for a user, an empty string should be sent for the password
@@ -364,7 +364,7 @@ tDirStatus CDirService::DoPasswordAuth(tDirReference inDSRef, tDirNodeReference 
 cleanup:
 
 		// release pContextData if we had continue data
-		if( pContextData != NULL ) {
+		if( pContextData != 0 ) {
 			dsReleaseContinueData( inDSRef, pContextData );
 			pContextData = NULL;
 		}

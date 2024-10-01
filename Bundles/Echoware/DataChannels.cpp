@@ -2,7 +2,7 @@
 #include "DataChannels.h"
 #include "DataChannel.h"
 
-#include "pthread.h"
+#include <pthread.h>
 
 #define WM_REMOVE_CHANNEL		(WM_USER+1)
 #define WM_REMOVE_ALLCHANNEL	(WM_USER+2)
