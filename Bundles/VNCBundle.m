@@ -16,9 +16,7 @@
 
 + (void) initialize {
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
-	 [NSDictionary dictionaryWithObjectsAndKeys:
-	  [NSArray arrayWithObjects:[NSNumber numberWithInt:kUCKeyActionAutoKey],[NSNumber numberWithInt:kUCKeyActionDisplay],[NSNumber numberWithInt:kUCKeyActionDown], [NSNumber numberWithInt:kUCKeyActionUp], nil], @"KeyStates", // Key States to review to find KeyCodes
-	  nil]];
+     @{@"KeyStates": @[@(kUCKeyActionAutoKey), @(kUCKeyActionDisplay), @(kUCKeyActionDown), @(kUCKeyActionUp)]}];
 }
 
 // Here are the resources we can think about using for Int'l keyboard support
@@ -43,7 +41,7 @@
     int i, j;
     UCKeyboardLayout *uchrHandle = NULL;
     CFStringRef keyboardName;
-    static UInt32 modifierKeyStates[] = {0, shiftKey, optionKey, controlKey, optionKey | shiftKey, optionKey | controlKey, controlKey | shiftKey, optionKey | shiftKey | controlKey};
+    static const UInt32 modifierKeyStates[] = {0, shiftKey, optionKey, controlKey, optionKey | shiftKey, optionKey | controlKey, controlKey | shiftKey, optionKey | shiftKey | controlKey};
 	UInt32 modifierKeyState = 0;
 	NSArray *keyStates = [[NSUserDefaults standardUserDefaults] arrayForKey:@"KeyStates"];
 
@@ -58,6 +56,7 @@
     if (inputSource) {
         keyboardName = (CFStringRef) TISGetInputSourceProperty(inputSource, kTISPropertyLocalizedName);
         NSLog(@"Keyboard detected: %@ - loading keys", keyboardName);
+        //TODO: get data to uchrHandle.
 		uchrHandle = (CFDataRef) TISGetInputSourceProperty(inputSource, kTISPropertyUnicodeKeyLayoutData);
     }
 

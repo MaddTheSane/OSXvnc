@@ -43,6 +43,10 @@ static BOOL listenerFinished = FALSE;
 
 rfbserver *theServer;
 
+extern OSStatus
+KLGetCurrentKeyboardLayout(KeyboardLayoutRef * oKeyboardLayout) AVAILABLE_MAC_OS_X_VERSION_10_2_AND_LATER_BUT_DEPRECATED_IN_MAC_OS_X_VERSION_10_5;
+
+
 + (void) loadGUI {
 	//	ProcessSerialNumber psn = { 0, kCurrentProcess };
 	//	OSStatus returnCode = TransformProcessType(& psn, kProcessTransformToForegroundApplication);
@@ -69,10 +73,10 @@ rfbserver *theServer;
 
         NSLog(@"Keyboard Loading - Enabled");
 
-        *(theServer->pressModsForKeys) = [[NSUserDefaults standardUserDefaults] boolForKey:@"pressModsForKeys"];
-        if (*(theServer->pressModsForKeys))
-            NSLog(@"Press Modifiers For Keys - Enabled");
-        else
+//        *(theServer->pressModsForKeys) = [[NSUserDefaults standardUserDefaults] boolForKey:@"pressModsForKeys"];
+//        if (*(theServer->pressModsForKeys))
+//            NSLog(@"Press Modifiers For Keys - Enabled");
+//        else
             NSLog(@"Press Modifiers For Keys - Disabled");
 
 		result = KLGetCurrentKeyboardLayout(&loadedKeyboardRef);
@@ -152,8 +156,7 @@ rfbserver *theServer;
 		NSLog(@"Started listener thread on IPv6 port %d", theServer->rfbPort);
 		listenerFinished = TRUE;
 
-	    while ((client_fd = accept(listen_fd6, (struct sockaddr *) &peer6, &len6)) !=-1) {
-			NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
+	    while ((client_fd = accept(listen_fd6, (struct sockaddr *) &peer6, &len6)) !=-1) @autoreleasepool {
 
 			[[NSNotificationCenter defaultCenter] postNotification:
 				[NSNotification notificationWithName:@"NewRFBClient" object:[NSNumber numberWithInt:client_fd]]];
@@ -161,7 +164,6 @@ rfbserver *theServer;
 			// We have to trigger a signal so the event loop will pickup (if no clients are connected)
 			pthread_cond_signal(&(theServer->listenerGotNewClient));
 
-			[pool release];
 		}
 
 		NSLog(@"IPv6: Accept failed %d", errno);
@@ -174,7 +176,7 @@ rfbserver *theServer;
 + (void) registerRendezvous {
 	BOOL loadRendezvousVNC = NO;
 	BOOL loadRendezvousRFB = YES;
-	int argumentIndex = [[[NSProcessInfo processInfo] arguments] indexOfObject:@"-rendezvous"];
+    NSInteger argumentIndex = [[[NSProcessInfo processInfo] arguments] indexOfObject:@"-rendezvous"];
 	RendezvousDelegate *rendezvousDelegate = [[RendezvousDelegate alloc] init];
 
     if (argumentIndex == NSNotFound) {

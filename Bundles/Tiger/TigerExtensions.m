@@ -51,7 +51,7 @@ static unsigned char unicodeNumbersToKeyCodes[16] = { 29, 18, 19, 20, 21, 23, 22
 
 void SyncSetKeyboardLayout (TISInputSourceRef inputSource);
 
-bool isConsoleSession();
+bool isConsoleSession(void);
 
 // The Keycodes to various modifiers on the current keyboard
 CGKeyCode keyCodeShift;
@@ -82,7 +82,7 @@ static void WaitForWindowServerSession(void) {
 		CFRelease(dict);
 }
 
-bool isConsoleSession() {
+bool isConsoleSession(void) {
 	BOOL returnValue = FALSE;
 	CFDictionaryRef sessionInfoDict = CGSessionCopyCurrentDictionary();
 

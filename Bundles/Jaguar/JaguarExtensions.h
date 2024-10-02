@@ -20,6 +20,6 @@
 
 @end
 
-@interface RendezvousDelegate : NSObject
-
-@end
+//@interface RendezvousDelegate : NSObject
+//
+//@end

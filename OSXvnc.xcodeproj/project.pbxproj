@@ -23,6 +23,10 @@
 
 /* Begin PBXBuildFile section */
 		5523FDCE2CA21763004D4647 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5523FDCD2CA21763004D4647 /* Localizable.xcstrings */; };
+		5592F54C2CAD3848008F7B09 /* JaguarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5592F5432CAD37E4008F7B09 /* JaguarExtensions.m */; };
+		5592F54D2CAD3890008F7B09 /* TigerExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5592F5482CAD37E4008F7B09 /* TigerExtensions.m */; };
+		5592F54E2CAD3AF6008F7B09 /* VNCBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5592F54B2CAD37E4008F7B09 /* VNCBundle.m */; };
+		5592F54F2CAD3B05008F7B09 /* VNCBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5592F54B2CAD37E4008F7B09 /* VNCBundle.m */; };
 		9199995B0B1135FF0099EA7A /* getMACAddress.c in Sources */ = {isa = PBXBuildFile; fileRef = 919999430B11348E0099EA7A /* getMACAddress.c */; };
 		AB25D81F08686B520065843D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F57BB467027E036F014B5D3F /* Credits.rtf */; };
 		AB25D82008686B520065843D /* Vine Server Release Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = AB541C2907A0264F00B63668 /* Vine Server Release Notes.rtf */; };
@@ -92,6 +96,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5592F5532CAD3CD4008F7B09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5592F52A2CAD3754008F7B09 /* Echoware.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8D5B49B6048680CD000E48DA;
+			remoteInfo = Echoware;
+		};
 		AB25DA5C08688EE80065843D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -147,6 +158,18 @@
 		556D01332CA293E800C60682 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = it; path = it.lproj/Credits.rtf; sourceTree = "<group>"; };
 		556D01342CA293EB00C60682 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Credits.rtf; sourceTree = "<group>"; };
 		556D01352CA293F100C60682 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = it; path = it.lproj/Copying.rtf; sourceTree = "<group>"; };
+		5592F52A2CAD3754008F7B09 /* Echoware.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Echoware.xcodeproj; path = Echoware/Echoware.xcodeproj; sourceTree = "<group>"; };
+		5592F5342CAD3777008F7B09 /* Jaguar.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Jaguar.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		5592F53F2CAD377E008F7B09 /* Tiger.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tiger.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		5592F5412CAD37E4008F7B09 /* JaguarBundle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JaguarBundle-Info.plist"; sourceTree = "<group>"; };
+		5592F5422CAD37E4008F7B09 /* JaguarExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JaguarExtensions.h; sourceTree = "<group>"; };
+		5592F5432CAD37E4008F7B09 /* JaguarExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JaguarExtensions.m; sourceTree = "<group>"; };
+		5592F5452CAD37E4008F7B09 /* RFBBundleProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFBBundleProtocol.h; sourceTree = "<group>"; };
+		5592F5462CAD37E4008F7B09 /* TigerBundle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TigerBundle-Info.plist"; sourceTree = "<group>"; };
+		5592F5472CAD37E4008F7B09 /* TigerExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TigerExtensions.h; sourceTree = "<group>"; };
+		5592F5482CAD37E4008F7B09 /* TigerExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TigerExtensions.m; sourceTree = "<group>"; };
+		5592F54A2CAD37E4008F7B09 /* VNCBundle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VNCBundle.h; sourceTree = "<group>"; };
+		5592F54B2CAD37E4008F7B09 /* VNCBundle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VNCBundle.m; sourceTree = "<group>"; };
 		919999420B11348C0099EA7A /* getMACAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getMACAddress.h; sourceTree = "<group>"; };
 		919999430B11348E0099EA7A /* getMACAddress.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = getMACAddress.c; sourceTree = "<group>"; };
 		AB25D83708686B520065843D /* VineServer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "VineServer-Info.plist"; sourceTree = "<group>"; };
@@ -264,6 +287,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5592F5312CAD3777008F7B09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5592F53A2CAD377E008F7B09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB25D82F08686B520065843D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -296,6 +333,8 @@
 				AB82605708689AC00010AB63 /* storepasswd */,
 				AB82605B08689AC00010AB63 /* OSXvnc-server */,
 				ABA7B52D094A053000CD7499 /* librdr.a */,
+				5592F5342CAD3777008F7B09 /* Jaguar.bundle */,
+				5592F53F2CAD377E008F7B09 /* Tiger.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,6 +342,7 @@
 		29B97314FDCFA39411CA2CEA /* OSXvnc */ = {
 			isa = PBXGroup;
 			children = (
+				5592F5402CAD37B2008F7B09 /* Bundles */,
 				BCFF37981DEB1F6300D4F43D /* VineServer */,
 				F538E00B02F9812901A80186 /* OSXvnc-server */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -351,6 +391,47 @@
 				AB41881F04C5986E00A80117 /* ApplicationServices.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5592F5402CAD37B2008F7B09 /* Bundles */ = {
+			isa = PBXGroup;
+			children = (
+				5592F52A2CAD3754008F7B09 /* Echoware.xcodeproj */,
+				5592F5442CAD37E4008F7B09 /* Jaguar */,
+				5592F5452CAD37E4008F7B09 /* RFBBundleProtocol.h */,
+				5592F5492CAD37E4008F7B09 /* Tiger */,
+				5592F54A2CAD37E4008F7B09 /* VNCBundle.h */,
+				5592F54B2CAD37E4008F7B09 /* VNCBundle.m */,
+			);
+			path = Bundles;
+			sourceTree = "<group>";
+		};
+		5592F5442CAD37E4008F7B09 /* Jaguar */ = {
+			isa = PBXGroup;
+			children = (
+				5592F5412CAD37E4008F7B09 /* JaguarBundle-Info.plist */,
+				5592F5422CAD37E4008F7B09 /* JaguarExtensions.h */,
+				5592F5432CAD37E4008F7B09 /* JaguarExtensions.m */,
+			);
+			path = Jaguar;
+			sourceTree = "<group>";
+		};
+		5592F5492CAD37E4008F7B09 /* Tiger */ = {
+			isa = PBXGroup;
+			children = (
+				5592F5462CAD37E4008F7B09 /* TigerBundle-Info.plist */,
+				5592F5472CAD37E4008F7B09 /* TigerExtensions.h */,
+				5592F5482CAD37E4008F7B09 /* TigerExtensions.m */,
+			);
+			path = Tiger;
+			sourceTree = "<group>";
+		};
+		5592F5502CAD3CD4008F7B09 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5592F5542CAD3CD4008F7B09 /* Echoware.bundle */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BCFF37981DEB1F6300D4F43D /* VineServer */ = {
@@ -518,6 +599,44 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		5592F5332CAD3777008F7B09 /* Jaguar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5592F5352CAD3777008F7B09 /* Build configuration list for PBXNativeTarget "Jaguar" */;
+			buildPhases = (
+				5592F5302CAD3777008F7B09 /* Sources */,
+				5592F5312CAD3777008F7B09 /* Frameworks */,
+				5592F5322CAD3777008F7B09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Jaguar;
+			packageProductDependencies = (
+			);
+			productName = Jaguar;
+			productReference = 5592F5342CAD3777008F7B09 /* Jaguar.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		5592F5382CAD377E008F7B09 /* Tiger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5592F53C2CAD377E008F7B09 /* Build configuration list for PBXNativeTarget "Tiger" */;
+			buildPhases = (
+				5592F5392CAD377E008F7B09 /* Sources */,
+				5592F53A2CAD377E008F7B09 /* Frameworks */,
+				5592F53B2CAD377E008F7B09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tiger;
+			packageProductDependencies = (
+			);
+			productName = Jaguar;
+			productReference = 5592F53F2CAD377E008F7B09 /* Tiger.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		AB25D81508686B520065843D /* Vine Server */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABECD3EA08E46414009C84A0 /* Build configuration list for PBXNativeTarget "Vine Server" */;
@@ -596,6 +715,11 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					5592F5332CAD3777008F7B09 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
 			};
 			buildConfigurationList = ABECD3EE08E46414009C84A0 /* Build configuration list for PBXProject "OSXvnc" */;
 			compatibilityVersion = "Xcode 12.0";
@@ -611,6 +735,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* OSXvnc */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5592F5502CAD3CD4008F7B09 /* Products */;
+					ProjectRef = 5592F52A2CAD3754008F7B09 /* Echoware.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				ABA30D3D15BEE7310001BAE5 /* Vine Server Package */,
@@ -618,11 +748,37 @@
 				AB25D88E08686FC40065843D /* OSXvnc-server */,
 				AB25D98F086876B80065843D /* storepasswd */,
 				ABA7B52C094A053000CD7499 /* rdr */,
+				5592F5332CAD3777008F7B09 /* Jaguar */,
+				5592F5382CAD377E008F7B09 /* Tiger */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		5592F5542CAD3CD4008F7B09 /* Echoware.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Echoware.bundle;
+			remoteRef = 5592F5532CAD3CD4008F7B09 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
+		5592F5322CAD3777008F7B09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5592F53B2CAD377E008F7B09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB25D81D08686B520065843D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -673,6 +829,24 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5592F5302CAD3777008F7B09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5592F54C2CAD3848008F7B09 /* JaguarExtensions.m in Sources */,
+				5592F54E2CAD3AF6008F7B09 /* VNCBundle.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5592F5392CAD377E008F7B09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5592F54D2CAD3890008F7B09 /* TigerExtensions.m in Sources */,
+				5592F54F2CAD3B05008F7B09 /* VNCBundle.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB25D82908686B520065843D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -808,6 +982,308 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5592F5362CAD3777008F7B09 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"OSXvnc-server",
+					"OSXvnc-server/include",
+					"libjpeg-turbo",
+				);
+				INFOPLIST_FILE = "Bundles/Jaguar/JaguarBundle-Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.redstonesoftware.JaguarBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Development;
+		};
+		5592F5372CAD3777008F7B09 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"OSXvnc-server",
+					"OSXvnc-server/include",
+					"libjpeg-turbo",
+				);
+				INFOPLIST_FILE = "Bundles/Jaguar/JaguarBundle-Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.redstonesoftware.JaguarBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Deployment;
+		};
+		5592F53D2CAD377E008F7B09 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"OSXvnc-server",
+					"OSXvnc-server/include",
+					"libjpeg-turbo",
+				);
+				INFOPLIST_FILE = "Bundles/Tiger/TigerBundle-Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.redstonesoftware.TigerBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Development;
+		};
+		5592F53E2CAD377E008F7B09 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"OSXvnc-server",
+					"OSXvnc-server/include",
+					"libjpeg-turbo",
+				);
+				INFOPLIST_FILE = "Bundles/Tiger/TigerBundle-Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.redstonesoftware.TigerBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Deployment;
+		};
 		ABA30D3E15BEE7310001BAE5 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1100,6 +1576,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5592F5352CAD3777008F7B09 /* Build configuration list for PBXNativeTarget "Jaguar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5592F5362CAD3777008F7B09 /* Development */,
+				5592F5372CAD3777008F7B09 /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Deployment;
+		};
+		5592F53C2CAD377E008F7B09 /* Build configuration list for PBXNativeTarget "Tiger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5592F53D2CAD377E008F7B09 /* Development */,
+				5592F53E2CAD377E008F7B09 /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Deployment;
+		};
 		ABA30D4215BEE7670001BAE5 /* Build configuration list for PBXAggregateTarget "Vine Server Package" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
